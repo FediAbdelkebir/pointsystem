@@ -1,9 +1,9 @@
-import { Connection } from ".";
+const connection = require("./db");
 
-export const all = async() =>{
-return Connection.query('SELECT * from evenements');
+const all = (req, res) => {
+    
 }
 
-export default{
+module.exports = {
     all
 }
