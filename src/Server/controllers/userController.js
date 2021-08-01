@@ -40,7 +40,7 @@ const createUser = (req, res) => {
 
 const updateUser = (req, res) => {
     User.findOne({_id: req.params.id.trim()}, (findErr, user)=>{
-        if(findError)
+        if(findErr)
             res.status(500).send({error: findErr});
         else {
             const {name, email, enrollnumber} = req.body;
@@ -62,8 +62,8 @@ const updateUser = (req, res) => {
 
 const deleteUser = (req, res) => {
     User.findOneAndRemove({_id: req.params.id.trim()})
-        .then(result => {
-            if (result) {               
+        .then(user => {
+            if (user) {               
                 res.send(user);
             } else {
                 res.status(404).send({error: "Utilisateur Introuvable !"});
