@@ -14,7 +14,7 @@ export default function Home() {
         .catch(err=>console.log)
     }, []);
 
-    const content = isLoading ? <h3>Loading Users...</h3> : (
+    const content = isLoading ? <h3>Loading Users...</h3> : users.length ? (
         users.map(user=>{
             return(
                 <pre key={user.id} style={{marginBottom: "50px"}}>
@@ -31,7 +31,7 @@ export default function Home() {
                 </pre>
             )
         })
-    );
+    ): <h3>Empty List !</h3>;
 
     return (
         <div>

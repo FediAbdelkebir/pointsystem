@@ -2,6 +2,9 @@
 const express = require('express');
 const cors = require("cors");
 
+//database
+require("./DB/db");
+
 //required routes
 const userRoutes = require("./routes/userRoutes");
 

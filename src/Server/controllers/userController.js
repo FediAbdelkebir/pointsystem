@@ -6,11 +6,12 @@ const getAllUsers = (req, res) => {
         if (err)
             res.status(500).send({error: err})
         else {
-            if (users)
+            if (users.length){
                 res.send(users);
+            }
             else
                 //liste vide
-                res.status(500).send({error: "Users list is empty !"})
+                res.sendStatus(204)
         }
     })
 }
