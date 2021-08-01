@@ -3,7 +3,7 @@ const express = require('express');
 const cors = require("cors");
 
 //required routes
-const APIRoutes = require("./routes/APIRoutes");
+const userRoutes = require("./routes/userRoutes");
 
 //express app init
 const app = express();
@@ -14,7 +14,7 @@ app.use(cors());
 
 //routes
 
-app.use("/api", APIRoutes);
+app.use("/users", userRoutes);
 
 
 
