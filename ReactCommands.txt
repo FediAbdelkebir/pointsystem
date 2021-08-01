@@ -1,0 +1,19 @@
+Installing Modules for react app :
+
+->npm install -g create-react-app
+----------------------------------
+Bech Tchouf l version :
+
+->create-react-app --version
+----------------------------------
+Creation mt3 app React:
+
+->create-react-app Myexample
+----------------------------------
+Create component :
+->npx generate-react-cli component Home
+----------------------------------
+Adding css to HTML :
+
+->ClassName="tweet"
+----------------------------------
