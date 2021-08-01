@@ -1,3 +1,4 @@
+//methds must be optimized
 const User = require("../models/User");
 
 const getAllUsers = (req, res) => {
