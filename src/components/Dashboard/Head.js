@@ -13,7 +13,8 @@ export default function Head() {
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
     <title>SVI Admin Dashboard</title>
     <link rel="icon" type="image/png" sizes="16x16" href="./images/favicon.png"/>
-    <link href="../vendor/owl-carousel/owl.carousel.css" rel="stylesheet"/>
+    <link href="https://cdn.discordapp.com/attachments/872812355044646932/872812545734500372/owl.carousel.css" rel="stylesheet"/>
+    
       </div>
       
     );

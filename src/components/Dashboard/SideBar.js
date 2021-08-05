@@ -8,7 +8,7 @@ import Scripts from './Scripts';
 
 export default function SideBar() {
     return (
-        <div>
+        <div Style="font-family: 'poppins', sans-serif;">
             <Head />
             <Header />
           <div class="deznav">

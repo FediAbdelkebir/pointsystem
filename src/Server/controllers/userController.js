@@ -9,7 +9,7 @@ const getAllUsers = (req, res) => {
         else {
             if (users.length){
                 res.send(users);
-            }
+            } 
             else
                 //liste vide
                 {console.log("list vide");

@@ -176,11 +176,11 @@ export default function Header() {
                 <li class="nav-item dropdown header-profile">
                   <a class="nav-link" href="#" role="button" data-toggle="dropdown">
                     <div class="header-info">
-                      <span class="text-black">Hello, <strong>Thomas</strong>
+                      <span class="text-black">Hello, <strong>Fedi</strong>
                       </span>
                       <p class="fs-12 mb-0">Super Admin</p>
                     </div>
-                    <img src="images/profile/pic1.jpg" width="20" alt="" />
+                    <img src="https://cdn.discordapp.com/attachments/475963741616472074/872798593101225984/IMG_20210617_021024_482.jpg" width="20" alt="" />
                   </a>
                   <div class="dropdown-menu dropdown-menu-right">
                     <a href="./app-profile.html" class="dropdown-item ai-icon">
