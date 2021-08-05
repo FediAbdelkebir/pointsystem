@@ -1,15 +1,17 @@
 import React from "react";
-import Home from './components/Home/Home';
-import Test from './components/Test';
-import SideBar from './components/Dashboard/SideBar';
-import './App.css';
-import Taches from "./components/Dashboard/Taches/Taches";
-import AjouterTache from"./components/Dashboard/Taches/AjouterTache";
-import ModifierTache from"./components/Dashboard/Taches/ModifierTache";
-function App() {
-    return ( 
-        <Taches />
-      
+import {Route, Switch} from "react-router-dom";
+import Taches from "./components/Dashboard/Taches/Taches"
+import AjouterTache from "./components/Dashboard/Taches/AjouterTache";
+
+
+function App(props) {
+    return (
+        <div className="App">
+            <Switch>
+                <Route exact={true} path={"/"} render={(props)=><Taches {...props} />} />
+                <Route path={"/add"} render={(props)=><AjouterTache {...props} />} />
+            </Switch>
+        </div>
     );
 }
 

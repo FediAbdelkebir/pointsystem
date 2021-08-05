@@ -3,20 +3,20 @@ import axios from "axios";
 import '../vendor/bootstrap-select/dist/css/bootstrap-select.min.css';
 import '../css/style.css';
 import Header from './Header';
-import Head from './Head';
+//import Head from './Head';
 import Scripts from './Scripts';
 
 export default function SideBar() {
     return (
-        <div Style="font-family: 'poppins', sans-serif;">
-            <Head />
+        <div style={{fontFamily: "'poppins', sans-serif"}}>
+            {/*<Head />*/}
             <Header />
-          <div class="deznav">
-            <div class="deznav-scroll">
-				<ul class="metismenu" id="menu">
-                    <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
-							<i class="flaticon-381-networking"></i>
-							<span class="nav-text">Societé</span>
+          <div className="deznav">
+            <div className="deznav-scroll">
+				<ul className="metismenu" id="menu">
+                    <li><a className="has-arrow ai-icon"  aria-expanded="false">
+							<i className="flaticon-381-networking"></i>
+							<span className="nav-text">Societé</span>
 						</a>
                         <ul aria-expanded="false">
                             <li><a href="my-wallet.html">Admins</a></li>
@@ -24,9 +24,9 @@ export default function SideBar() {
                             <li><a href="my-wallet.html">Projects</a></li>
 						</ul>
                     </li>
-                    <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
-                    <i class="flaticon-381-notepad"></i>
-							<span class="nav-text">Taches</span>
+                    <li><a className="has-arrow ai-icon"  aria-expanded="false">
+                    <i className="flaticon-381-notepad"></i>
+							<span className="nav-text">Taches</span>
 						</a>
                         <ul aria-expanded="false">
                             <li><a href="./ui-accordion.html">Liste Des Taches</a></li>
@@ -35,9 +35,9 @@ export default function SideBar() {
                             <li><a href="./ui-button.html">Gestion Taches</a></li>
                         </ul>
                     </li>
-                    <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
-							<i class="fa fa-shopping-cart"></i>
-							<span class="nav-text">Shops</span>
+                    <li><a className="has-arrow ai-icon"  aria-expanded="false">
+							<i className="fa fa-shopping-cart"></i>
+							<span className="nav-text">Shops</span>
 						</a>
                         <ul aria-expanded="false"> 	
 									<li><a href="./ecom-product-list.html">Produit List</a></li>
@@ -48,9 +48,9 @@ export default function SideBar() {
 
                         </ul>
                     </li>
-                    <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
-							<i class="flaticon-381-controls-3"></i>
-							<span class="nav-text">Statistiques</span>
+                    <li><a className="has-arrow ai-icon"  aria-expanded="false">
+							<i className="flaticon-381-controls-3"></i>
+							<span className="nav-text">Statistiques</span>
 						</a>
                         <ul aria-expanded="false">
                             <li><a href="./chart-flot.html">Employees</a></li>
@@ -60,7 +60,7 @@ export default function SideBar() {
                     </li>
                     
                 </ul>
-				<div class="copyright">
+				<div className="copyright">
 					<p><strong>SIV - Admin Dashboard</strong> © 2021 All Rights Reserved</p>
 				</div>
 			</div>
