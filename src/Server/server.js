@@ -8,6 +8,7 @@ require("./DB/db");
 //required routes
 const userRoutes = require("./routes/userRoutes");
 const tacheRoutes = require("./routes/tacheRoutes");
+const societeRoutes = require("./routes/SocietesRoutes");
 
 //express app init
 const app = express();
@@ -20,6 +21,7 @@ app.use(cors());
 
 app.use("/users", userRoutes);
 app.use("/taches", tacheRoutes);
+app.use("/societes", societeRoutes);
 
 
 

@@ -5,44 +5,41 @@ import '../../css/style.css';
 import SideBar from '../SideBar';
 import {Link} from "react-router-dom";
 
-export default function Taches(props) {
+export default function Societes() {
     const [isLoading, setIsLoading] = useState(true);
-    const [taches,setTaches]=useState([]);
+    const [societes,setSocietes]=useState([]);
 
     useEffect(()=>{
-        axios.get("http://localhost:4000/taches/")
+        axios.get("http://localhost:4000/societes/")
         .then(res=>{
-            console.log(res);
-            setTaches(res.data);
+            setSocietes(res.data);
             setIsLoading(false);
         })
         .catch(err=>console.log)
     }, []);
 
-    const content = isLoading ? <h3>Loading Taches...</h3> : taches.length ? (
-        taches.map(tache=>{
+    const content = isLoading ? <h3>Loading Societes...</h3> : societes.length ? (
+        societes.map(societe=>{
             return(
-                <pre key={tache._id} style={{marginBottom: "50px"}}>
-                    <div>{tache._id}</div>
-                    <div>{tache.name}</div>
-                    <div>{tache.email}</div>
-                    <div>{tache.enrollnumber}</div>
+                <pre key={societe._id} style={{marginBottom: "50px"}}>
+                    <div>{societe._id}</div>
+                    <div>{societe.name}</div>
+                    <div>{societe.email}</div>
+                    <div>{societe.enrollnumber}</div>
                 </pre>
             )
         })
     ): <h3>Empty List !</h3>;
-
-    console.log(taches);
     return (
 <div>
 {content}
   <SideBar />
-  <div className="content-body" style={{fontFamily: "'poppins', sans-serif"}}>
+  <div className="content-body" Style="font-family: 'poppins', sans-serif;">
     <div className="container-fluid">
       <div className="page-titles">
         <ol className="breadcrumb">
           <li className="breadcrumb-item">
-            <a>Taches</a>
+            <a href="javascript:void(0)">Societes</a>
           </li>
         </ol>
       </div>
@@ -50,10 +47,10 @@ export default function Taches(props) {
       <div className="col-xl-3 col-lg-6 col-sm-6">
 						<div className="widget-stat card">
 							<div className="card-body p-4">
-								<h4 className="card-title">Total Students</h4>
+								<h4 className="card-title">Total Societes</h4>
 								<h3>3280</h3>
 								<div className="progress mb-2">
-									<div className="progress-bar progress-animated bg-primary" style={{width: "80%"}}></div>
+									<div className="progress-bar progress-animated bg-primary" Style="width: 80%"></div>
 								</div>
 								<small>80% Increase in 20 Days</small>
 							</div>
@@ -62,36 +59,12 @@ export default function Taches(props) {
         <div className="col-xl-3 col-lg-6 col-sm-6">
 						<div className="widget-stat card">
 							<div className="card-body p-4">
-								<h4 className="card-title">Nouveaux Taches</h4>
+								<h4 className="card-title">Nouveaux Societes</h4>
 								<h3>245</h3>
 								<div className="progress mb-2">
-									<div className="progress-bar progress-animated bg-warning" style={{width: "50%"}}></div>
+									<div className="progress-bar progress-animated bg-warning" Style="width: 50%"></div>
 								</div>
 								<small>50% Increase in 25 Days</small>
-							</div>
-						</div>
-                    </div>
-        <div className="col-xl-3 col-lg-6 col-sm-6">
-						<div className="widget-stat card">
-							<div className="card-body p-4">
-								<h4 className="card-title">Taches Completes</h4>
-								<h3>500</h3>
-								<div className="progress mb-2">
-									<div className="progress-bar progress-animated bg-red" style={{width: "76%"}}></div>
-								</div>
-								<small>76% Increase in 20 Days</small>
-							</div>
-						</div>
-                    </div>
-        <div className="col-xl-3 col-lg-6 col-sm-6">
-						<div className="widget-stat card">
-							<div className="card-body p-4">
-								<h4 className="card-title">Taches En Cours</h4>
-								<h3>280</h3>
-								<div className="progress mb-2">
-									<div className="progress-bar progress-animated bg-success" style={{Width: "60%"}}></div>
-								</div>
-								<small>60% Increase in 30 Days</small>
 							</div>
 						</div>
                     </div>
@@ -105,9 +78,7 @@ export default function Taches(props) {
           </div>
           <input type="text" className="form-control" placeholder="Search here" />
         </div>
-        <Link to={`/AjouterTache`} className="btn btn-primary ml-auto">
-          + Ajouter Tache
-        </Link>
+        <Link to={`/AjouterSocietes`} className="btn btn-primary ml-auto"> + Ajouter Societes</Link>
       </div>
       <div className="card-body">
         <div className="table-responsive">
@@ -122,26 +93,20 @@ export default function Taches(props) {
                       id="checkAll"
                       required=""
                     />
-                    <label className="custom-control-label" htmlFor="checkAll"></label>
+                    <label className="custom-control-label" for="checkAll"></label>
                   </div>
                 </th>
                 <th>
                   <strong>ROLL NO.</strong>
                 </th>
                 <th>
-                  <strong>Nom</strong>
+                  <strong>Nom Sociéte</strong>
                 </th>
                 <th>
                   <strong>Code</strong>
                 </th>
                 <th>
-                  <strong>Description</strong>
-                </th>
-                <th>
                   <strong>Responsable</strong>
-                </th>
-                <th>
-                  <strong>Etat</strong>
                 </th>
               </tr>
             </thead>
@@ -157,7 +122,7 @@ export default function Taches(props) {
                     />
                     <label
                       className="custom-control-label"
-                      htmlFor="customCheckBox2"
+                      for="customCheckBox2"
                     ></label>
                   </div>
                 </td>
@@ -178,24 +143,6 @@ export default function Taches(props) {
                 <td>example@example.com </td>
                 <td>01 August 2020</td>
                 <td></td>
-                <td>
-                  <div className="d-flex align-items-center">
-                    <span className="badge light badge-success">Successful</span>
-                  </div>
-                </td>
-                <td>
-                  <div className="d-flex">
-                    <a
-                      href="#"
-                      className="btn btn-primary shadow btn-xs sharp mr-1"
-                    >
-                      <i className="fa fa-pencil"></i>
-                    </a>
-                    <a href="#" className="btn btn-danger shadow btn-xs sharp">
-                      <i className="fa fa-trash"></i>
-                    </a>
-                  </div>
-                </td>
               </tr>
               <tr>
                 <td>
@@ -208,7 +155,7 @@ export default function Taches(props) {
                     />
                     <label
                       className="custom-control-label"
-                      htmlFor="customCheckBox3"
+                      for="customCheckBox3"
                     ></label>
                   </div>
                 </td>
@@ -229,24 +176,6 @@ export default function Taches(props) {
                 <td>example@example.com </td>
                 <td>01 August 2020</td>
                 <td></td>
-                <td>
-                  <div className="d-flex align-items-center">
-                  <span className="badge light badge-danger">Canceled</span>
-                  </div>
-                </td>
-                <td>
-                  <div className="d-flex">
-                    <a
-                      href="#"
-                      className="btn btn-primary shadow btn-xs sharp mr-1"
-                    >
-                      <i className="fa fa-pencil"></i>
-                    </a>
-                    <a href="#" className="btn btn-danger shadow btn-xs sharp">
-                      <i className="fa fa-trash"></i>
-                    </a>
-                  </div>
-                </td>
               </tr>
               <tr>
                 <td>
@@ -259,7 +188,7 @@ export default function Taches(props) {
                     />
                     <label
                       className="custom-control-label"
-                      htmlFor="customCheckBox4"
+                      for="customCheckBox4"
                     ></label>
                   </div>
                 </td>
@@ -280,24 +209,6 @@ export default function Taches(props) {
                 <td>example@example.com </td>
                 <td>01 August 2020</td>
                 <td></td>
-                <td>
-                  <div className="d-flex align-items-center">
-                  <span className="badge light badge-warning">Pending</span>
-                  </div>
-                </td>
-                <td>
-                  <div className="d-flex">
-                    <a
-                      href="#"
-                      className="btn btn-primary shadow btn-xs sharp mr-1"
-                    >
-                      <i className="fa fa-pencil"></i>
-                    </a>
-                    <a href="#" className="btn btn-danger shadow btn-xs sharp">
-                      <i className="fa fa-trash"></i>
-                    </a>
-                  </div>
-                </td>
               </tr>
             </tbody>
           </table>
@@ -306,32 +217,32 @@ export default function Taches(props) {
       <nav>
         <ul className="pagination pagination-gutter pagination-primary no-bg">
           <li className="page-item page-indicator">
-            <a className="page-link" >
+            <a className="page-link" href="javascript:void()">
               <i className="la la-angle-left"></i>
             </a>
           </li>
           <li className="page-item ">
-            <a className="page-link" >
-              1
+            <a className="page-link" href="javascript:void()">
+              
             </a>
           </li>
           <li className="page-item active">
-            <a className="page-link" >
+            <a className="page-link" href="javascript:void()">
               2
             </a>
           </li>
           <li className="page-item">
-            <a className="page-link" >
+            <a className="page-link" href="javascript:void()">
               3
             </a>
           </li>
           <li className="page-item">
-            <a className="page-link" >
+            <a className="page-link" href="javascript:void()">
               4
             </a>
           </li>
           <li className="page-item page-indicator">
-            <a className="page-link" >
+            <a className="page-link" href="javascript:void()">
               <i className="la la-angle-right"></i>
             </a>
           </li>

@@ -5,6 +5,7 @@ import '../css/style.css';
 import Header from './Header';
 //import Head from './Head';
 import Scripts from './Scripts';
+import {Link} from "react-router-dom";
 
 export default function SideBar() {
     return (
@@ -19,9 +20,9 @@ export default function SideBar() {
 							<span className="nav-text">Societé</span>
 						</a>
                         <ul aria-expanded="false">
-                            <li><a href="my-wallet.html">Admins</a></li>
+                            <li><Link to={`/Societes`}>Societes</Link></li>
 							<li><a href="index.html">Employees</a></li>	
-                            <li><a href="my-wallet.html">Projects</a></li>
+                            <li><Link to={`/Taches`}>Taches</Link></li>
 						</ul>
                     </li>
                     <li><a className="has-arrow ai-icon"  aria-expanded="false">
@@ -30,7 +31,7 @@ export default function SideBar() {
 						</a>
                         <ul aria-expanded="false">
                             <li><a href="./ui-accordion.html">Liste Des Taches</a></li>
-                            <li><a href="./ui-alert.html">Ajouter Tache</a></li>
+                            <li><Link to={`/AjouterTache`}>Ajouter Tache</Link></li>
                             <li><a href="./ui-badge.html">Affecter Tache</a></li>
                             <li><a href="./ui-button.html">Gestion Taches</a></li>
                         </ul>
