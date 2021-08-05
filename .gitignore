@@ -3,6 +3,7 @@
 # dependencies
 /node_modules
 /.vscode
+/.idea
 /Server/node_modules
 /.pnp
 .pnp.js
