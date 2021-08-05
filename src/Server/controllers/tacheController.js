@@ -2,19 +2,17 @@
 const Tache = require('../models/Tache');
 
 const getAllTaches = (req, res) => {
-    console.log("wslt");
     Tache.find({}, (err, taches) => {
-        console.log(taches);
         if (err)
             res.status(500).send({error: err})
         else {
             if (taches.length){
+                console.log(taches);
                 res.send(taches);
             }
             else
                 //liste vide
-                {console.log("liste vide");
-                res.sendStatus(204)}
+                res.sendStatus(204)
         }
     })
 }
