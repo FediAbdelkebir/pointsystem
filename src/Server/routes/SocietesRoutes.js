@@ -2,10 +2,10 @@ const societesController = require("../controllers/societesController");
 const router = require("express").Router();
 
 router.get('/', societesController.getAllSocietes);
-router.get('/societe/:id', societesController.getSocieteById);
-router.post('/createsociete', societesController.createSociete);
-router.put('/updatesociete/:id', societesController.updateSociete);
-router.delete('/deletesociete/:id', societesController.deleteSociete);
+router.get('/:id', societesController.getSocieteById);
+router.post('/create', societesController.createSociete);
+router.put('/:id', societesController.updateSociete);
+router.delete('/:id', societesController.deleteSociete);
 
 
 module.exports = router;

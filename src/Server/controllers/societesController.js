@@ -32,13 +32,15 @@ const getSocieteById = (req, res) => {
 }
 
 const createSociete = (req, res) => {
-    const {name, email, enrollnumber} = req.body;
-    Societe.create({ name, email, enrollnumber }, (err, Societe)=>{
+    const {Nom, Code, SUPAD} = req.body;
+    Societe.create({ Nom, Code, SUPAD}, (err, societe)=>{
+        console.log("wslt");
         if(err)
             res.status(500).send({error: err})
         else
-            res.send(Societe);
+            res.send(societe);
     });  
+    console.log(req.body) 
 }
 
 const updateSociete = (req, res) => {
