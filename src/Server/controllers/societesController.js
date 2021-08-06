@@ -7,8 +7,8 @@ const getAllSocietes = (req, res) => {
         if (err)
             res.status(500).send({error: err})
         else {
-            if (users.length){
-                res.send(users);
+            if (societes.length){
+                res.send(societes);
             } 
             else
                 //liste vide
@@ -33,14 +33,13 @@ const getSocieteById = (req, res) => {
 
 const createSociete = (req, res) => {
     const {Nom, Code, SUPAD} = req.body;
+    console.log(req.body);
     Societe.create({ Nom, Code, SUPAD}, (err, societe)=>{
-        console.log("wslt");
         if(err)
             res.status(500).send({error: err})
         else
             res.send(societe);
     });  
-    console.log(req.body) 
 }
 
 const updateSociete = (req, res) => {
