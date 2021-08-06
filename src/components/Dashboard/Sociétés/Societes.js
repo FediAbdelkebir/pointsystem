@@ -8,6 +8,14 @@ import {Link} from "react-router-dom";
 export default function Societes() {
     const [isLoading, setIsLoading] = useState(true);
     const [societes,setSocietes]=useState([]);
+    
+    const deletesociete = (id) => {
+      axios.delete("http://localhost:4000/societes/:id",{
+        params: {
+          id: id
+        }});
+    };
+
 
     useEffect(()=>{
         axios.get("http://localhost:4000/societes/")
@@ -54,13 +62,13 @@ export default function Societes() {
                 <td>{societe.SUPAD}</td>
                 <td>
                   <div className="d-flex">
-                    <a
-                      href="#"
+                    <Link
+                      to={`/ModifierSociete/`+societe._id}
                       className="btn btn-primary shadow btn-xs sharp mr-1"
                     >
                       <i className="fa fa-pencil"></i>
-                    </a>
-                    <a href="#" className="btn btn-danger shadow btn-xs sharp">
+                    </Link>
+                    <a onClick={deletesociete} className="btn btn-danger shadow btn-xs sharp">
                       <i className="fa fa-trash"></i>
                     </a>
                   </div>

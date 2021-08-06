@@ -1,79 +1,144 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 import axios from "axios";
-import '../../vendor/bootstrap-select/dist/css/bootstrap-select.min.css';
-import '../../css/style.css';
-import SideBar from '../SideBar';
+import "../../vendor/bootstrap-select/dist/css/bootstrap-select.min.css";
+import "../../css/style.css";
+import SideBar from "../SideBar";
+import Swal from "sweetalert2";
 
-export default function ModiferSociete() {
-    return (
-<div Style="font-family: 'poppins', sans-serif;">
-    
-  <SideBar />
-  <div className="content-body">
-    <div className="container-fluid">
-      <div className="page-titles">
-        <ol className="breadcrumb">
-          <li className="breadcrumb-item">
-            <a href="javascript:void(0)">Modifier Societe</a>
-          </li>
-        </ol>
-      </div>
-      <div className="card-body">
-                                <div className="basic-form">
-                                    <form>
+export default function ModifierSociete(props) {
+const [isLoading, setIsLoading] = useState(true);
+const [societes,setSocietes]=useState([]);
+  const [societe, oldSociete] = useState({
+    Nom: "",
+    Code: "",
+    SUPAD: "",
+  });
+  const handleChange = (e) => {
+    oldSociete({
+        societe,
+      [e.target.id]: e.target.value,
+    });
+  };
 
-                                        <div className="form-row">
-                                            <div className="form-group col-md-3">
-                                                <label>Modifier Nom Societe</label>
-                                                <input type="text" className="form-control" placeholder="Nouveau nom de la tache"/>
-                                            </div>
-                                            <div className="form-group col-md-2">
-                                            <label>Nouveau Nombre de Points </label>
-                                            <input type="text" className="form-control"/>
-                                            </div>
-                                            <div className="form-group col-md-2">
-                                            <p className="mb-1">Nouveau Date Range Pick</p>
-                                            <input className="form-control input-daterange-datepicker" type="text" name="daterange" value="01/01/2015 - 01/31/2015"/>
-                                            </div>
-                                            <div className="form-group col-md-4">
-                                                
-                                                <label>Nouveau Responsable</label>
-                                                <div className="form-group col-md-6">
-                                                <div className="dropdown bootstrap-select form-control dropup"><select id="inputState" className="form-control" tabindex="-98">
-                                                    <option selected="">Choose...</option>
-                                                    <option>Option 1</option>
-                                                    <option>Option 2</option>
-                                                    <option>Option 3</option>
-                                                </select><button type="button" className="btn dropdown-toggle btn-light" data-toggle="dropdown" role="button" data-id="inputState" title="Choose..." aria-expanded="false"><div className="filter-option"><div className="filter-option-inner"><div className="filter-option-inner-inner">Choose...</div></div> </div></button><div className="dropdown-menu" role="combobox" Style="max-height: 411px; overflow: hidden; min-height: 112px; position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, -2px, 0px);" x-placement="top-start"><div className="inner show" role="listbox" aria-expanded="false" tabindex="-1" Style="max-height: 395px; overflow-y: auto; min-height: 96px;"><ul className="dropdown-menu inner show"><li className="selected active"><a role="option" className="dropdown-item selected active" aria-disabled="false" tabindex="0" aria-selected="true"><span className=" bs-ok-default check-mark"></span><span className="text">Choose...</span></a></li><li><a role="option" className="dropdown-item" aria-disabled="false" tabindex="0" aria-selected="false"><span className=" bs-ok-default check-mark"></span><span className="text">Option 1</span></a></li><li><a role="option" className="dropdown-item" aria-disabled="false" tabindex="0" aria-selected="false"><span className=" bs-ok-default check-mark"></span><span className="text">Option 2</span></a></li><li><a role="option" className="dropdown-item" aria-disabled="false" tabindex="0" aria-selected="false"><span className=" bs-ok-default check-mark"></span><span className="text">Option 3</span></a></li></ul></div></div></div>
-                                            </div>
-                                            </div>
-                                            
-                                            
-                                            <div className="form-group col-md-9" >
-                                            <label>Description detaillé de la tache </label>
-                                        <textarea className="form-control" rows="5" id="comment" placeholder="Nouvelle Description sur la tache.."></textarea>
-                                        </div>
-                                        
-                                        </div>
+  const handleClick = (e) => {
+    societe.Nom = document.getElementById("NouveauNomSociete").value;
+    societe.Code = document.getElementById("NouveauCodeSociete").value;
+    societe.SUPAD = document.getElementById("NouveauSUPAD").value;
+    console.log({ societe });
 
-                                        <div className="form-group">
-                                            <div className="form-check">
-                                                <input className="form-check-input" type="checkbox"/>
-                                                <label className="form-check-label">
-                                                    Send Mail (Modification) 
-                                                </label>
-                                            </div>
-                                        </div>
-                                        
-                                        <button type="submit" className="btn btn-primary">+ Modifier Societe</button>
-                                    </form>
-                                </div>
-                            </div>
+    Swal.fire({
+        
+      title: "Vous etez sur?",
+      text: "Veuillez Vérifier vos besoin avant de envoyé ",
+      icon: "warning",
+      showDenyButton: true,
+      confirmButtonText: `Modifier`,
+      denyButtonText: `Non`,
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire("Success", "Votre Societe a été modifié :) ", "success");
+
+
+        e.preventDefault();
+        axios
+          .put("http://localhost:4000/societes/UpdateSociete/:id", {
+            Nom: societe.Nom,
+            Code: societe.Code,
+            SUPAD: societe.SUPAD,
+          })
+          .then((res) => {
+            console.log(res.data);
+          })
+          .catch((err) => {
+            console.error(err);
+          });
+      } else {
+        Swal.fire("Annulé", "Vous Avez Annulé la modification d'une societe.", "error");
+      }
+    });
+  };
+
+
+    useEffect(()=>{
+        axios.get("http://localhost:4000/societes/"+props.id)
+        .then(res=>{
+            setSocietes(res.data);
+            setIsLoading(false);
+        })
+        .catch(err=>console.log)
+    }, []);
+
+    const modifier = isLoading ? <h3>Loading Societes...</h3> : societes.length ? (
+        societes.map(societe=>{
+            return(
+                <div className="content-body"  key={societe._id}>
+                <div className="container-fluid">
+                  <div className="page-titles">
+                    <ol className="breadcrumb">
+                      <li className="breadcrumb-item">
+                        <a href="javascript:void(0)">Modifier Societe</a>
+                      </li>
+                    </ol>
+                  </div>
+                  <div className="card-body">
+                    <div className="basic-form">
+                      <form>
+                        <div className="form-row">
+                          <div className="form-group col-md-3">
+                            <label>Nom Societe</label>
+                            <input
+                              type="text"
+                              className="form-control"
+                              placeholder="Nouveau Nom Complet De la Societe"
+                              type="text"
+                              id={"NouveauNomSociete"}
+                              name={"NouveauNomSociete"}
+                              defaultValue={societe.Nom}
+                              onChange={handleChange}
+                            />
+                          </div>
+                          <div className="form-group col-md-2">
+                            <label>Code Societe </label>
+                            <input
+                              type="text"
+                              className="form-control"
+                              type="text"
+                              id={"NouveauCodeSociete"}
+                              name={"NouveauCodeSociete"}
+                              defaultValue={societe.Code}
+                              onChange={handleChange}
+                            />
+                          </div>
+                          <div className="form-group col-md-3">
+                            <label>Super Admin</label>
+                            <input
+                              type="text"
+                              className="form-control"
+                              placeholder="Nouveau SuperAdmin"
+                              type="text"
+                              id={"NouveauSUPAD"}
+                              name={"NouveauSUPAD"}
+                              defaultValue={societe.SUPAD}
+                              onChange={handleChange}
+                            />
+                          </div>
+                        </div>
+                      </form>
+                      <button className="btn btn-primary" onClick={handleClick}>
+                        Modifier Societe
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            )
+        })
+    ): <h3>Vide</h3>;
+
+  return (
+    <div Style="font-family: 'poppins', sans-serif;">
+      <SideBar />
+     {modifier}
     </div>
-  </div>
-
-</div>
-
-      
-    );
+  );
 }
