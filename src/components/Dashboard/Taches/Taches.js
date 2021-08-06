@@ -35,7 +35,6 @@ export default function Taches(props) {
     console.log(taches);
     return (
 <div>
-{content}
   <SideBar />
   <div className="content-body" style={{fontFamily: "'poppins', sans-serif"}}>
     <div className="container-fluid">

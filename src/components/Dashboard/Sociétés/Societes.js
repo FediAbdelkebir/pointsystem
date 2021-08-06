@@ -21,18 +21,56 @@ export default function Societes() {
     const content = isLoading ? <h3>Loading Societes...</h3> : societes.length ? (
         societes.map(societe=>{
             return(
-                <pre key={societe._id} style={{marginBottom: "50px"}}>
-                    <div>{societe._id}</div>
-                    <div>{societe.name}</div>
-                    <div>{societe.email}</div>
-                    <div>{societe.enrollnumber}</div>
-                </pre>
+                    <tr key={societe._id}>
+                <td>
+                  <div className="custom-control custom-checkbox checkbox-success check-lg mr-3">
+                    <input
+                      type="checkbox"
+                      className="custom-control-input"
+                      id="customCheckBox2"
+                      required=""
+                    />
+                    <label
+                      className="custom-control-label"
+                      for="customCheckBox2"
+                    ></label>
+                  </div>
+                </td>
+                <td>
+                  <strong>{societe._id}</strong>
+                </td>
+                <td>
+                  <div className="d-flex align-items-center">
+                    <img
+                      src="images/avatar/1.jpg"
+                      className="rounded-lg mr-2"
+                      alt=""
+                      width="24"
+                    />{" "}
+                    <span className="w-space-no">{societe.Nom}</span>
+                  </div>
+                </td>
+                <td>{societe.Code}</td>
+                <td>{societe.SUPAD}</td>
+                <td>
+                  <div className="d-flex">
+                    <a
+                      href="#"
+                      className="btn btn-primary shadow btn-xs sharp mr-1"
+                    >
+                      <i className="fa fa-pencil"></i>
+                    </a>
+                    <a href="#" className="btn btn-danger shadow btn-xs sharp">
+                      <i className="fa fa-trash"></i>
+                    </a>
+                  </div>
+                </td>
+              </tr>
             )
         })
     ): <h3>Empty List !</h3>;
     return (
 <div>
-{content}
   <SideBar />
   <div className="content-body" Style="font-family: 'poppins', sans-serif;">
     <div className="container-fluid">
@@ -110,109 +148,17 @@ export default function Societes() {
                 </th>
               </tr>
             </thead>
-            <tbody>
-              <tr>
-                <td>
-                  <div className="custom-control custom-checkbox checkbox-success check-lg mr-3">
-                    <input
-                      type="checkbox"
-                      className="custom-control-input"
-                      id="customCheckBox2"
-                      required=""
-                    />
-                    <label
-                      className="custom-control-label"
-                      for="customCheckBox2"
-                    ></label>
-                  </div>
-                </td>
-                <td>
-                  <strong>542</strong>
-                </td>
-                <td>
-                  <div className="d-flex align-items-center">
-                    <img
-                      src="images/avatar/1.jpg"
-                      className="rounded-lg mr-2"
-                      alt=""
-                      width="24"
-                    />{" "}
-                    <span className="w-space-no">Dr. Jackson</span>
-                  </div>
-                </td>
-                <td>example@example.com </td>
-                <td>01 August 2020</td>
-                <td></td>
-              </tr>
-              <tr>
-                <td>
-                  <div className="custom-control custom-checkbox checkbox-success check-lg mr-3">
-                    <input
-                      type="checkbox"
-                      className="custom-control-input"
-                      id="customCheckBox3"
-                      required=""
-                    />
-                    <label
-                      className="custom-control-label"
-                      for="customCheckBox3"
-                    ></label>
-                  </div>
-                </td>
-                <td>
-                  <strong>542</strong>
-                </td>
-                <td>
-                  <div className="d-flex align-items-center">
-                    <img
-                      src="images/avatar/2.jpg"
-                      className="rounded-lg mr-2"
-                      alt=""
-                      width="24"
-                    />{" "}
-                    <span className="w-space-no">Dr. Jackson</span>
-                  </div>
-                </td>
-                <td>example@example.com </td>
-                <td>01 August 2020</td>
-                <td></td>
-              </tr>
-              <tr>
-                <td>
-                  <div className="custom-control custom-checkbox checkbox-success check-lg mr-3">
-                    <input
-                      type="checkbox"
-                      className="custom-control-input"
-                      id="customCheckBox4"
-                      required=""
-                    />
-                    <label
-                      className="custom-control-label"
-                      for="customCheckBox4"
-                    ></label>
-                  </div>
-                </td>
-                <td>
-                  <strong>542</strong>
-                </td>
-                <td>
-                  <div className="d-flex align-items-center">
-                    <img
-                      src="images/avatar/3.jpg"
-                      className="rounded-lg mr-2"
-                      alt=""
-                      width="24"
-                    />{" "}
-                    <span className="w-space-no">Dr. Jackson</span>
-                  </div>
-                </td>
-                <td>example@example.com </td>
-                <td>01 August 2020</td>
-                <td></td>
-              </tr>
-            </tbody>
+              {content}
+             
           </table>
         </div>
+      </div>
+      <div className="form-head d-flex mb-4 mb-md-5 align-items-start">
+        <div className="input-group search-area d-inline-flex">
+          <div className="input-group-append">
+          </div>
+        </div>
+        <a href="#" className="btn btn-danger ml-auto"><i className="fa fa-trash"></i> Delete Selected items</a>
       </div>
       <nav>
         <ul className="pagination pagination-gutter pagination-primary no-bg">
