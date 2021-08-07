@@ -133,10 +133,10 @@ function Trienom(){
 
         </div>
         
-        <a  className="btn btn-info ml-auto" onClick={Trienom}> <i className="fa fa-list"></i> Trie Par Nom</a>
-          <a href="#" className="btn btn-info ml-auto"><i className="fa fa-list"></i> Trie Par Code</a>
-          <a href="#" className="btn btn-info ml-auto"><i className="fa fa-list"></i> Trie Par Responsable</a>
-        <Link to={`/AjouterSocietes`} className="btn btn-primary ml-auto"><i className="fa fa-plus"></i> Ajouter Societes</Link>
+        <a  className="btn btn-info ml-auto" onClick={Trienom}> <i className="fa fa-sort"></i> Trie Par Nom</a>
+          <a href="#" className="btn btn-info ml-auto"><i className="fa fa-sort"></i> Trie Par Code</a>
+          <a href="#" className="btn btn-info ml-auto"><i className="fa fa-sort"></i> Trie Par Responsable</a>
+        <Link to={`/AjouterSocietes`} className="btn btn-primary ml-auto"><i className="fa fa-plus-circle"></i> Ajouter Societes</Link>
       </div>
       <div className="card-body">
         <div className="table-responsive">

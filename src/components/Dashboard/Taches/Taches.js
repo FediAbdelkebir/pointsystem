@@ -162,13 +162,13 @@ export default function Taches(props) {
           </div>
           <input type="text" className="form-control" placeholder="Search here" />
         </div>
-        <a href="#" className="btn btn-info ml-auto"> <i className="fa fa-list"></i> Nom</a>
-          <a href="#" className="btn btn-info ml-auto"><i className="fa fa-list"></i> Code</a>
-          <a href="#" className="btn btn-info ml-auto"><i className="fa fa-list"></i> Description</a>
-          <a href="#" className="btn btn-info ml-auto"><i className="fa fa-list"></i> Responsable</a>
-          <a href="#" className="btn btn-info ml-auto"><i className="fa fa-list"></i> Etat</a>
+        <a href="#" className="btn btn-info ml-auto"> <i className="fa fa-sort"></i> Nom</a>
+          <a href="#" className="btn btn-info ml-auto"><i className="fa fa-sort"></i> Code</a>
+          <a href="#" className="btn btn-info ml-auto"><i className="fa fa-sort"></i> Description</a>
+          <a href="#" className="btn btn-info ml-auto"><i className="fa fa-sort"></i> Responsable</a>
+          <a href="#" className="btn btn-info ml-auto"><i className="fa fa-sort"></i> Etat</a>
         <Link to={`/AjouterTache`} className="btn btn-primary ml-auto">
-          <i className="fa fa-plus"></i> Ajouter Tache
+          <i className="fa fa-plus-circle"></i> Ajouter Tache
         </Link>
       </div>
       <div className="card-body">

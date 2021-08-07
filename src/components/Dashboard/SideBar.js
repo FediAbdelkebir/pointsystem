@@ -20,9 +20,10 @@ export default function SideBar() {
 							<span className="nav-text">Societé</span>
 						</a>
                         <ul aria-expanded="false">
-                            <li><Link to={`/Societes`}>Societes</Link></li>
-							<li><a href="#">Employees</a></li>	
-                            <li><Link to={`/Taches`}>Taches</Link></li>
+                            <li><Link to={`/Societes`}><i className="fa fa-building"></i>Societes</Link></li>
+                            <li><Link to={`/AjouterSocietes`}><i className="fa fa-plus-square"></i>Ajouter Societé</Link></li>
+							<li><a href="#"><i className="fa fa-users"></i>Employees</a></li>	
+                            
 						</ul>
                     </li>
                     <li><a className="has-arrow ai-icon"  aria-expanded="false">
@@ -30,9 +31,10 @@ export default function SideBar() {
 							<span className="nav-text">Taches</span>
 						</a>
                         <ul aria-expanded="false">
-                            <li><Link to={`/AjouterTache`}>Ajouter Tache</Link></li>
-                            <li><a href="#">Affecter Tache</a></li>
-                            <li><a href="#">Gestion Taches</a></li>
+                            <li><Link to={`/Taches`}><i className="fa fa-tasks"></i>Taches</Link></li>
+                            <li><Link to={`/AjouterTache`}><i className="fa fa-plus-square"></i>Ajouter Tache</Link></li>
+                            <li><a href="#"><i className="fa fa-tags"></i>Affecter Tache</a></li>
+                            
                         </ul>
                     </li>
                     <li><a className="has-arrow ai-icon"  aria-expanded="false">

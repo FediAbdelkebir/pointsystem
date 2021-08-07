@@ -134,7 +134,7 @@ export default function AjouterSociete() {
                 </div>
               </form>
               <button className="btn btn-primary" onClick={handleClick}>
-                + Ajouter Societe
+              <i className="fa fa-plus-square"></i> Ajouter Societe
               </button>
             </div>
           </div>

@@ -16,6 +16,7 @@ export default function ModifierTache(props) {
     Responsable: "",
     Points: "",
   });
+  
   const handleChange = (e) => {
     setTache({
       tache,

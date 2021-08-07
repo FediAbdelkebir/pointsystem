@@ -136,7 +136,7 @@ export default function AjouterTache() {
                                         
                                         
                                     </form>
-                                    <button className="btn btn-primary" onClick={handleClick}> + Ajouter Societe</button>
+                                    <button className="btn btn-primary" onClick={handleClick}><i className="fa fa-plus-square"></i> Ajouter Societe</button>
                                 </div>
                             </div>
     </div>
