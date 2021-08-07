@@ -31,8 +31,8 @@ const getTacheById = (req, res) => {
 }
 
 const createTache = (req, res) => {
-    const {name, email, enrollnumber} = req.body;
-    Tache.create({ name, email, enrollnumber }, (err, tache)=>{
+    const {Nom, Code, Description,Points,Responsable,Etat} = req.body;
+    Tache.create({Nom, Code, Description,Points,Responsable,Etat}, (err, tache)=>{
         if(err)
             res.status(500).send({error: err})
         else
@@ -45,11 +45,14 @@ const updateTache = (req, res) => {
         if(findErr)
             res.status(500).send({error: findErr});
         else {
-            const {name, email, enrollnumber} = req.body;
+            const {Nom, Code, Description,Points,Responsable,Etat} = req.body;
             //possibility to check the fields (validation) before saving !!!!!!!!!!!!!!!!!!!!!!
-            tache.name = name;
-            tache.email = email;
-            tache.enrollnumber = enrollnumber;
+            tache.Nom = Nom;
+            tache.Code = Code;
+            tache.Description = Description;
+            tache.Points=Points;
+            tache.Responsable=Responsable;
+            tache.Etat=Etat;
             Tache.save()
                 .then(modifiedTache=>{
                     res.send(modifiedTache)

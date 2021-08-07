@@ -21,7 +21,7 @@ export default function SideBar() {
 						</a>
                         <ul aria-expanded="false">
                             <li><Link to={`/Societes`}>Societes</Link></li>
-							<li><a href="index.html">Employees</a></li>	
+							<li><a href="#">Employees</a></li>	
                             <li><Link to={`/Taches`}>Taches</Link></li>
 						</ul>
                     </li>
@@ -30,10 +30,9 @@ export default function SideBar() {
 							<span className="nav-text">Taches</span>
 						</a>
                         <ul aria-expanded="false">
-                            <li><a href="./ui-accordion.html">Liste Des Taches</a></li>
                             <li><Link to={`/AjouterTache`}>Ajouter Tache</Link></li>
-                            <li><a href="./ui-badge.html">Affecter Tache</a></li>
-                            <li><a href="./ui-button.html">Gestion Taches</a></li>
+                            <li><a href="#">Affecter Tache</a></li>
+                            <li><a href="#">Gestion Taches</a></li>
                         </ul>
                     </li>
                     <li><a className="has-arrow ai-icon"  aria-expanded="false">
@@ -41,11 +40,11 @@ export default function SideBar() {
 							<span className="nav-text">Shops</span>
 						</a>
                         <ul aria-expanded="false"> 	
-									<li><a href="./ecom-product-list.html">Produit List</a></li>
-									<li><a href="./ecom-product-detail.html">Produit Detailles</a></li>
-									<li><a href="./ecom-product-order.html">Order</a></li>
-									<li><a href="./ecom-checkout.html">Checkout</a></li>
-									<li><a href="./ecom-invoice.html">Invoice</a></li>
+									<li><a href="#">Produit List</a></li>
+									<li><a href="#">Produit Detailles</a></li>
+									<li><a href="#">Order</a></li>
+									<li><a href="#">Checkout</a></li>
+									<li><a href="#">Invoice</a></li>
 
                         </ul>
                     </li>

@@ -2,23 +2,38 @@
 const {Schema, model} = require('mongoose');
 
 const tacheSchema = new Schema({
-    name: {
+    Nom: {
         type: String,
         required: true,
         minlength: 3,
         maxlength: 33,
         trim: true
     },
-    email: {
+    Code: {
         type: String,
         required: true,
         trim: true
     },
-    enrollnumber: {
+    Description: {
+        type: String,
+        required: true,
+        trim: true
+    },
+    Points: {
         type: Number,
-        min: 1,
-        max: 120
-    }
+        required: true,
+        trim: true
+    },
+    Responsable: {
+        type: String,
+        required: true,
+        trim: true
+    },
+    Etat: {
+        type: String,
+        required: true,
+        trim: true
+    },
 }, {
     //timestamps is necessary to createdAt and updatedat fields creation
     timestamps: true

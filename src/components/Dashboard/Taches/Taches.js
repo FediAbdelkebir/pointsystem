@@ -19,20 +19,78 @@ export default function Taches(props) {
         .catch(err=>console.log)
     }, []);
 
-    const content = isLoading ? <h3>Loading Taches...</h3> : taches.length ? (
-        taches.map(tache=>{
-            return(
-                <pre key={tache._id} style={{marginBottom: "50px"}}>
-                    <div>{tache._id}</div>
-                    <div>{tache.name}</div>
-                    <div>{tache.email}</div>
-                    <div>{tache.enrollnumber}</div>
-                </pre>
-            )
-        })
-    ): <h3>Empty List !</h3>;
-
-    console.log(taches);
+    const deletetache = (id) => {
+      axios.delete("http://localhost:4000/societes/:id",{
+        params: {
+          id: id
+        }});
+    };
+    const content = isLoading ? <h3>Loading Societes...</h3> : taches.length ? (
+      taches
+      .map(tache=>{
+        let Etat="";
+        if (tache.Etat=="Validé") {
+          tache.Etat = <span class="badge light badge-success">Validé</span>;
+        }
+        if (tache.Etat=="En Cours") {
+          tache.Etat = <span class="badge light badge-warning">En Cours</span>;
+        }
+        if (tache.Etat=="Terminé") {
+          tache.Etat = <span class="badge light badge-danger">Terminé</span>;
+        }
+          return(
+                  <tr key={tache._id}>
+              <td>
+                <div className="custom-control custom-checkbox checkbox-success check-lg mr-3">
+                  <input
+                    type="checkbox"
+                    className="custom-control-input"
+                    id={"tache.Code"}
+                    required=""
+                    name={"tache.Code"}
+                  />
+                  <label
+                    className="custom-control-label"
+                    for="customCheckBox2"
+                  ></label>
+                </div>
+              </td>
+              <td>
+                <strong>{tache._id}</strong>
+              </td>
+              <td>
+                <div className="d-flex align-items-center">
+                  <img
+                    src="images/avatar/1.jpg"
+                    className="rounded-lg mr-2"
+                    alt=""
+                    width="24"
+                  />{" "}
+                  <span className="w-space-no">{tache.Nom}</span>
+                </div>
+              </td>
+              <td>{tache.Code}</td>
+              <td>{tache.Description}</td>
+              <td>{tache.Points}</td>
+              <td>{tache.Responsable}</td>
+              <td>{tache.Etat}</td>
+              <td>
+                <div className="d-flex">
+                  <Link
+                    to={`/ModifierSociete/`+tache._id}
+                    className="btn btn-primary shadow btn-xs sharp mr-1"
+                  >
+                    <i className="fa fa-pencil"></i>
+                  </Link>
+                  <a onClick={deletetache} className="btn btn-danger shadow btn-xs sharp">
+                    <i className="fa fa-trash"></i>
+                  </a>
+                </div>
+              </td>
+            </tr>
+          )
+      })
+  ): <h3>Empty List !</h3>;
     return (
 <div>
   <SideBar />
@@ -104,8 +162,13 @@ export default function Taches(props) {
           </div>
           <input type="text" className="form-control" placeholder="Search here" />
         </div>
+        <a href="#" className="btn btn-info ml-auto"> <i className="fa fa-list"></i> Nom</a>
+          <a href="#" className="btn btn-info ml-auto"><i className="fa fa-list"></i> Code</a>
+          <a href="#" className="btn btn-info ml-auto"><i className="fa fa-list"></i> Description</a>
+          <a href="#" className="btn btn-info ml-auto"><i className="fa fa-list"></i> Responsable</a>
+          <a href="#" className="btn btn-info ml-auto"><i className="fa fa-list"></i> Etat</a>
         <Link to={`/AjouterTache`} className="btn btn-primary ml-auto">
-          + Ajouter Tache
+          <i className="fa fa-plus"></i> Ajouter Tache
         </Link>
       </div>
       <div className="card-body">
@@ -137,6 +200,9 @@ export default function Taches(props) {
                   <strong>Description</strong>
                 </th>
                 <th>
+                  <strong>Points</strong>
+                </th>
+                <th>
                   <strong>Responsable</strong>
                 </th>
                 <th>
@@ -145,162 +211,17 @@ export default function Taches(props) {
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td>
-                  <div className="custom-control custom-checkbox checkbox-success check-lg mr-3">
-                    <input
-                      type="checkbox"
-                      className="custom-control-input"
-                      id="customCheckBox2"
-                      required=""
-                    />
-                    <label
-                      className="custom-control-label"
-                      htmlFor="customCheckBox2"
-                    ></label>
-                  </div>
-                </td>
-                <td>
-                  <strong>542</strong>
-                </td>
-                <td>
-                  <div className="d-flex align-items-center">
-                    <img
-                      src="images/avatar/1.jpg"
-                      className="rounded-lg mr-2"
-                      alt=""
-                      width="24"
-                    />{" "}
-                    <span className="w-space-no">Dr. Jackson</span>
-                  </div>
-                </td>
-                <td>example@example.com </td>
-                <td>01 August 2020</td>
-                <td></td>
-                <td>
-                  <div className="d-flex align-items-center">
-                    <span className="badge light badge-success">Successful</span>
-                  </div>
-                </td>
-                <td>
-                  <div className="d-flex">
-                    <a
-                      href="#"
-                      className="btn btn-primary shadow btn-xs sharp mr-1"
-                    >
-                      <i className="fa fa-pencil"></i>
-                    </a>
-                    <a href="#" className="btn btn-danger shadow btn-xs sharp">
-                      <i className="fa fa-trash"></i>
-                    </a>
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <div className="custom-control custom-checkbox checkbox-success check-lg mr-3">
-                    <input
-                      type="checkbox"
-                      className="custom-control-input"
-                      id="customCheckBox3"
-                      required=""
-                    />
-                    <label
-                      className="custom-control-label"
-                      htmlFor="customCheckBox3"
-                    ></label>
-                  </div>
-                </td>
-                <td>
-                  <strong>542</strong>
-                </td>
-                <td>
-                  <div className="d-flex align-items-center">
-                    <img
-                      src="images/avatar/2.jpg"
-                      className="rounded-lg mr-2"
-                      alt=""
-                      width="24"
-                    />{" "}
-                    <span className="w-space-no">Dr. Jackson</span>
-                  </div>
-                </td>
-                <td>example@example.com </td>
-                <td>01 August 2020</td>
-                <td></td>
-                <td>
-                  <div className="d-flex align-items-center">
-                  <span className="badge light badge-danger">Canceled</span>
-                  </div>
-                </td>
-                <td>
-                  <div className="d-flex">
-                    <a
-                      href="#"
-                      className="btn btn-primary shadow btn-xs sharp mr-1"
-                    >
-                      <i className="fa fa-pencil"></i>
-                    </a>
-                    <a href="#" className="btn btn-danger shadow btn-xs sharp">
-                      <i className="fa fa-trash"></i>
-                    </a>
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <div className="custom-control custom-checkbox checkbox-success check-lg mr-3">
-                    <input
-                      type="checkbox"
-                      className="custom-control-input"
-                      id="customCheckBox4"
-                      required=""
-                    />
-                    <label
-                      className="custom-control-label"
-                      htmlFor="customCheckBox4"
-                    ></label>
-                  </div>
-                </td>
-                <td>
-                  <strong>542</strong>
-                </td>
-                <td>
-                  <div className="d-flex align-items-center">
-                    <img
-                      src="images/avatar/3.jpg"
-                      className="rounded-lg mr-2"
-                      alt=""
-                      width="24"
-                    />{" "}
-                    <span className="w-space-no">Dr. Jackson</span>
-                  </div>
-                </td>
-                <td>example@example.com </td>
-                <td>01 August 2020</td>
-                <td></td>
-                <td>
-                  <div className="d-flex align-items-center">
-                  <span className="badge light badge-warning">Pending</span>
-                  </div>
-                </td>
-                <td>
-                  <div className="d-flex">
-                    <a
-                      href="#"
-                      className="btn btn-primary shadow btn-xs sharp mr-1"
-                    >
-                      <i className="fa fa-pencil"></i>
-                    </a>
-                    <a href="#" className="btn btn-danger shadow btn-xs sharp">
-                      <i className="fa fa-trash"></i>
-                    </a>
-                  </div>
-                </td>
-              </tr>
+{content}
             </tbody>
           </table>
         </div>
+      </div>
+      <div className="form-head d-flex mb-4 mb-md-5 align-items-start">
+        <div className="input-group search-area d-inline-flex">
+          <div className="input-group-append">
+          </div>
+        </div>
+        <a href="#" className="btn btn-danger ml-auto"><i className="fa fa-trash"></i> Delete Selected items</a>
       </div>
       <nav>
         <ul className="pagination pagination-gutter pagination-primary no-bg">

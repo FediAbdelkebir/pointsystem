@@ -25,9 +25,15 @@ export default function Societes() {
         })
         .catch(err=>console.log)
     }, []);
-
+function Trienom(){
+  societes.sort((a, b) => a.Nom > b.Nom ? 1 : -1)
+  societes.sort((a, b) => a.Code > b.Code ? 1 : -1)
+  societes.sort((a, b) => a.SUPAD > b.SUPAD ? 1 : -1)
+  console.log(societes);
+}
     const content = isLoading ? <h3>Loading Societes...</h3> : societes.length ? (
-        societes.map(societe=>{
+        societes
+        .map(societe=>{
             return(
                     <tr key={societe._id}>
                 <td>
@@ -35,8 +41,9 @@ export default function Societes() {
                     <input
                       type="checkbox"
                       className="custom-control-input"
-                      id="customCheckBox2"
+                      id={"societe.Code"}
                       required=""
+                      name={"societe.Code"}
                     />
                     <label
                       className="custom-control-label"
@@ -122,9 +129,14 @@ export default function Societes() {
               <i className="flaticon-381-search-2"></i>
             </span>
           </div>
-          <input type="text" className="form-control" placeholder="Search here" />
+          <input type="text" className="form-control" placeholder="Search here" />&nbsp;
+
         </div>
-        <Link to={`/AjouterSocietes`} className="btn btn-primary ml-auto"> + Ajouter Societes</Link>
+        
+        <a  className="btn btn-info ml-auto" onClick={Trienom}> <i className="fa fa-list"></i> Trie Par Nom</a>
+          <a href="#" className="btn btn-info ml-auto"><i className="fa fa-list"></i> Trie Par Code</a>
+          <a href="#" className="btn btn-info ml-auto"><i className="fa fa-list"></i> Trie Par Responsable</a>
+        <Link to={`/AjouterSocietes`} className="btn btn-primary ml-auto"><i className="fa fa-plus"></i> Ajouter Societes</Link>
       </div>
       <div className="card-body">
         <div className="table-responsive">
