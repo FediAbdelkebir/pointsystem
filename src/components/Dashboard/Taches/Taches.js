@@ -77,7 +77,7 @@ export default function Taches(props) {
               <td>
                 <div className="d-flex">
                   <Link
-                    to={`/ModifierSociete/`+tache._id}
+                    to={`/ModifierTache/`+tache._id}
                     className="btn btn-primary shadow btn-xs sharp mr-1"
                   >
                     <i className="fa fa-pencil"></i>
@@ -210,9 +210,7 @@ export default function Taches(props) {
                 </th>
               </tr>
             </thead>
-            <tbody>
 {content}
-            </tbody>
           </table>
         </div>
       </div>
