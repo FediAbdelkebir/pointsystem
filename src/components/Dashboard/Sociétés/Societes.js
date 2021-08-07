@@ -4,18 +4,62 @@ import '../../vendor/bootstrap-select/dist/css/bootstrap-select.min.css';
 import '../../css/style.css';
 import SideBar from '../SideBar';
 import {Link} from "react-router-dom";
+import Swal from "sweetalert2";
 
 export default function Societes() {
     const [isLoading, setIsLoading] = useState(true);
     const [societes,setSocietes]=useState([]);
     
     const deletesociete = (id) => {
-      axios.delete("http://localhost:4000/societes/:id",{
+      Swal.fire({
+        title: "Vous etez sur?",
+        text: "Veuillez Vérifier vos besoin avant de envoyé ",
+        icon: "warning",
+        showDenyButton: true,
+        confirmButtonText: `Oui, Supprimer`,
+        denyButtonText: `Non, Annuler`,
+      }).then((result) => {
+        if (result.isConfirmed) {
+          axios.delete("http://localhost:4000/societes/:id",{
         params: {
           id: id
         }});
-    };
+          Swal.fire("Success", "Votre tache a été Modifié :) ", "success");
+        } else {
+          Swal.fire(
+            "Annulé",
+            "Vous Avez Annulé la suppresion de cette tache.",
+            "error"
+          );
+        }
+      });
 
+      
+    };
+    const deleteall = (id) => {
+      Swal.fire({
+        title: "Vous etez sur?",
+        text: "Veuillez Vérifier vos besoin avant de envoyé ",
+        icon: "warning",
+        showDenyButton: true,
+        confirmButtonText: `Oui, Supprimer`,
+        denyButtonText: `Non, Annuler`,
+      }).then((result) => {
+        if (result.isConfirmed) {
+          axios.delete("http://localhost:4000/societes/:id",{
+        params: {
+          id: id
+        }});
+          Swal.fire("Success", "societes Supprimé :) ", "success");
+        } else {
+          Swal.fire(
+            "Annulé",
+            "Vous Avez Annulé la suppresion de ces societes.",
+            "error"
+          );
+        }
+      });
+    }
 
     useEffect(()=>{
         axios.get("http://localhost:4000/societes/")
@@ -61,7 +105,7 @@ function Trienom(){
                       className="rounded-lg mr-2"
                       alt=""
                       width="24"
-                    />{" "}
+                    />
                     <span className="w-space-no">{societe.Nom}</span>
                   </div>
                 </td>
@@ -75,7 +119,7 @@ function Trienom(){
                     >
                       <i className="fa fa-pencil"></i>
                     </Link>
-                    <a onClick={deletesociete} className="btn btn-danger shadow btn-xs sharp">
+                    <a href="#" onClick={deletesociete} className="btn btn-danger shadow btn-xs sharp">
                       <i className="fa fa-trash"></i>
                     </a>
                   </div>
@@ -178,7 +222,7 @@ function Trienom(){
           <div className="input-group-append">
           </div>
         </div>
-        <a href="#" className="btn btn-danger ml-auto"><i className="fa fa-trash"></i> Delete Selected items</a>
+        <a href="#" className="btn btn-danger ml-auto" onClick={deleteall}><i className="fa fa-trash"></i> Delete Selected items</a>
       </div>
       <nav>
         <ul className="pagination pagination-gutter pagination-primary no-bg">

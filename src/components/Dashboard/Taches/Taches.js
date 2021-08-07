@@ -4,6 +4,7 @@ import '../../vendor/bootstrap-select/dist/css/bootstrap-select.min.css';
 import '../../css/style.css';
 import SideBar from '../SideBar';
 import {Link} from "react-router-dom";
+import Swal from "sweetalert2";
 
 export default function Taches(props) {
     const [isLoading, setIsLoading] = useState(true);
@@ -20,11 +21,55 @@ export default function Taches(props) {
     }, []);
 
     const deletetache = (id) => {
-      axios.delete("http://localhost:4000/societes/:id",{
+      Swal.fire({
+        title: "Vous etez sur?",
+        text: "Veuillez Vérifier vos besoin avant de envoyé ",
+        icon: "warning",
+        showDenyButton: true,
+        confirmButtonText: `Oui, Supprimer`,
+        denyButtonText: `Non, Annuler`,
+      }).then((result) => {
+        if (result.isConfirmed) {
+          axios.delete("http://localhost:4000/taches/deletetaches/:id",{
         params: {
           id: id
         }});
+          Swal.fire("Success", "Tache Supprimé :) ", "success");
+        } else {
+          Swal.fire(
+            "Annulé",
+            "Vous Avez Annulé la suppresion de cette tache.",
+            "error"
+          );
+        }
+      });
     };
+     
+    const deleteall = (id) => {
+      Swal.fire({
+        title: "Vous etez sur?",
+        text: "Veuillez Vérifier vos besoin avant de envoyé ",
+        icon: "warning",
+        showDenyButton: true,
+        confirmButtonText: `Oui, Supprimer`,
+        denyButtonText: `Non, Annuler`,
+      }).then((result) => {
+        if (result.isConfirmed) {
+          axios.delete("http://localhost:4000/taches/deletetaches/:id",{
+        params: {
+          id: id
+        }});
+          Swal.fire("Success", "Taches Supprimé :) ", "success");
+        } else {
+          Swal.fire(
+            "Annulé",
+            "Vous Avez Annulé la suppresion de ces taches.",
+            "error"
+          );
+        }
+      });
+    }
+
     const content = isLoading ? <h3>Loading Societes...</h3> : taches.length ? (
       taches
       .map(tache=>{
@@ -82,7 +127,7 @@ export default function Taches(props) {
                   >
                     <i className="fa fa-pencil"></i>
                   </Link>
-                  <a onClick={deletetache} className="btn btn-danger shadow btn-xs sharp">
+                  <a href="#" onClick={deletetache} className="btn btn-danger shadow btn-xs sharp">
                     <i className="fa fa-trash"></i>
                   </a>
                 </div>
@@ -219,7 +264,7 @@ export default function Taches(props) {
           <div className="input-group-append">
           </div>
         </div>
-        <a href="#" className="btn btn-danger ml-auto"><i className="fa fa-trash"></i> Delete Selected items</a>
+        <a href="#" className="btn btn-danger ml-auto" onClick={deleteall}><i className="fa fa-trash"></i> Delete Selected items</a>
       </div>
       <nav>
         <ul className="pagination pagination-gutter pagination-primary no-bg">
