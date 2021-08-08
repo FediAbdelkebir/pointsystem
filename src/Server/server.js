@@ -9,7 +9,7 @@ require("./DB/db");
 const userRoutes = require("./routes/userRoutes");
 const tacheRoutes = require("./routes/tacheRoutes");
 const societeRoutes = require("./routes/SocietesRoutes");
-
+const usertachesRoutes = require("./routes/UserTachesRoutes");
 //express app init
 const app = express();
 
@@ -23,6 +23,7 @@ app.use(cors());
 app.use("/users", userRoutes);
 app.use("/taches", tacheRoutes);
 app.use("/societes", societeRoutes);
+app.use("/usertaches", societeRoutes);
 
 
 
