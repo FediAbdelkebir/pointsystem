@@ -33,7 +33,7 @@ export default function SideBar() {
                         <ul aria-expanded="false">
                             <li><Link to={`/Taches`}><i className="fa fa-tasks"></i>Taches</Link></li>
                             <li><Link to={`/AjouterTache`}><i className="fa fa-plus-square"></i>Ajouter Tache</Link></li>
-                            <li><a href="#"><i className="fa fa-tags"></i>Affecter Tache</a></li>
+                            <li><Link to={`/AffecterTache`}><i className="fa fa-tag"></i>Affecter Tache</Link></li>
                             
                         </ul>
                     </li>

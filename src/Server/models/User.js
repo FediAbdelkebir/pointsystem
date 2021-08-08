@@ -14,7 +14,45 @@ const userSchema = new Schema({
         required: true,
         trim: true
     },
-    enrollnumber: {
+    passwordHash: {
+        type: String,
+        min: 1,
+        max: 120
+    },
+    city: {
+        type: String,
+        min: 1,
+        max: 120
+    }
+    ,
+    isAdmin: {
+        type: Boolean,
+        min: 1,
+        max: 120
+    }
+    ,
+    street: {
+        type: String,
+        min: 1,
+        max: 120
+    },
+    apartement: {
+        type: String,
+        min: 1,
+        max: 120
+    }
+    ,
+    zip: {
+        type: Number,
+        min: 1,
+        max: 120
+    },
+    country: {
+        type: String,
+        min: 1,
+        max: 120
+    },
+    phone: {
         type: Number,
         min: 1,
         max: 120
@@ -24,4 +62,4 @@ const userSchema = new Schema({
     timestamps: true
 });
 
-module.exports = model('users', userSchema,'Users');
+module.exports = model('users', userSchema,'users');

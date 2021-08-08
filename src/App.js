@@ -6,11 +6,13 @@ import Societes from "./components/Dashboard/Sociétés/Societes";
 import AjouterSocietes from "./components/Dashboard/Sociétés/AjouterSociete";
 import ModiferSociete from "./components/Dashboard/Sociétés/ModifierSociete";
 import ModifierTache from "./components/Dashboard/Taches/ModifierTache";
+import AffecterTache from "./components/Dashboard/Taches/AffecterTache";
 function App(props) {
     return (
         <div className="App">
             <Switch>
                 <Route exact={true} path={"/"} render={(props)=><Taches {...props} />} />
+                <Route path={"/AffecterTache"} render={(props)=><AffecterTache {...props} />} />
                 <Route path={"/AjouterTache"} render={(props)=><AjouterTache {...props} />} />
                 <Route path={"/Taches"} render={(props)=><Taches {...props} />} />
                 <Route path={"/AjouterSocietes"} render={(props)=><AjouterSocietes {...props} />} />

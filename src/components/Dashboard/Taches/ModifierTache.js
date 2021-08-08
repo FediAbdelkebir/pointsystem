@@ -46,12 +46,12 @@ export default function ModifierTache(props) {
 
         e.preventDefault();
         axios.put("http://localhost:4000/taches/updatetache/"+props.id, {
-            Nom: Nouveautache.Nom,
-            Code: Nouveautache.Code,
-            Description: Nouveautache.Description,
-            Etat: Nouveautache.Etat,
-            Points: Nouveautache.Points,
-            Responsable: Nouveautache.Responsable,
+            Nom: document.getElementById("NouveauNomTache").value,
+            Code: document.getElementById("NouveauCodeTache").value,
+            Description: document.getElementById("NouveauDescriptionTache").value,
+            Etat: "En Cours",
+            Points: document.getElementById("NouveauPointsTache").value,
+            Responsable: "TestingTaches",
           })
           .then((res) => {
             console.log(res.data);
@@ -255,7 +255,7 @@ export default function ModifierTache(props) {
                   </div>
                 </form>
                 <button className="btn btn-primary" onClick={handleClick}>
-                  Modifier Societe
+                  Modifier Tache
                 </button>
               </div>
             </div>
