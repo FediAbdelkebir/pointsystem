@@ -6,7 +6,7 @@ import SideBar from '../SideBar';
 import {Link} from "react-router-dom";
 import Swal from "sweetalert2";
 
-export default function Taches(props) {
+export default function Taches() {
     const [isLoading, setIsLoading] = useState(true);
     const [taches,setTaches]=useState([]);
 
@@ -20,57 +20,7 @@ export default function Taches(props) {
         .catch(err=>console.log)
     }, []);
 
-    const deletetache = (id) => {
-      Swal.fire({
-        title: "Vous etez sur?",
-        text: "Veuillez Vérifier vos besoin avant de envoyé ",
-        icon: "warning",
-        showDenyButton: true,
-        confirmButtonText: `Oui, Supprimer`,
-        denyButtonText: `Non, Annuler`,
-      }).then((result) => {
-        if (result.isConfirmed) {
-          axios.delete("http://localhost:4000/taches/deletetaches/:id",{
-        params: {
-          id: id
-        }});
-          Swal.fire("Success", "Tache Supprimé :) ", "success");
-        } else {
-          Swal.fire(
-            "Annulé",
-            "Vous Avez Annulé la suppresion de cette tache.",
-            "error"
-          );
-        }
-      });
-    };
-     
-    const deleteall = (id) => {
-      Swal.fire({
-        title: "Vous etez sur?",
-        text: "Veuillez Vérifier vos besoin avant de envoyé ",
-        icon: "warning",
-        showDenyButton: true,
-        confirmButtonText: `Oui, Supprimer`,
-        denyButtonText: `Non, Annuler`,
-      }).then((result) => {
-        if (result.isConfirmed) {
-          axios.delete("http://localhost:4000/taches/deletetaches/:id",{
-        params: {
-          id: id
-        }});
-          Swal.fire("Success", "Taches Supprimé :) ", "success");
-        } else {
-          Swal.fire(
-            "Annulé",
-            "Vous Avez Annulé la suppresion de ces taches.",
-            "error"
-          );
-        }
-      });
-    }
-
-    const content = isLoading ? <h3>Loading Societes...</h3> : taches.length ? (
+    const content = isLoading ? <h3>Loading Taches...</h3> : taches.length ? (
       taches
       .map(tache=>{
         let Etat="";
@@ -122,20 +72,64 @@ export default function Taches(props) {
               <td>
                 <div className="d-flex">
                   <Link
-                    to={`/ModifierTache/`+tache._id}
+                    to={`/ModifierTache/`+tache._id} 
                     className="btn btn-primary shadow btn-xs sharp mr-1"
                   >
                     <i className="fa fa-pencil"></i>
                   </Link>
-                  <a href="#" onClick={deletetache} className="btn btn-danger shadow btn-xs sharp">
-                    <i className="fa fa-trash"></i>
-                  </a>
+                  <a href="#" onClick={(e) =>deletetache(tache._id, e)} className="btn btn-danger shadow btn-xs sharp" ><i className="fa fa-trash"></i></a>
                 </div>
               </td>
             </tr>
           )
       })
   ): <h3>Empty List !</h3>;
+  function deletetache(id) {
+    Swal.fire({
+      title: "Vous etez sur?",
+      text: "Veuillez Vérifier vos besoin avant de envoyé ",
+      icon: "warning",
+      showDenyButton: true,
+      confirmButtonText: `Oui, Supprimer`,
+      denyButtonText: `Non, Annuler`,
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axios.delete("http://localhost:4000/taches/deletetache/"+id);
+        Swal.fire("Success", "Tache Supprimé :) ", "success");
+      } else {
+        Swal.fire(
+          "Annulé",
+          "Vous Avez Annulé la suppresion de cette tache.",
+          "error"
+        );
+      }
+    });
+  };
+   
+  const deleteall = (id) => {
+    Swal.fire({
+      title: "Vous etez sur?",
+      text: "Veuillez Vérifier vos besoin avant de envoyé ",
+      icon: "warning",
+      showDenyButton: true,
+      confirmButtonText: `Oui, Supprimer`,
+      denyButtonText: `Non, Annuler`,
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axios.delete("http://localhost:4000/taches/deletetaches/:id",{
+      params: {
+        id: id
+      }});
+        Swal.fire("Success", "Taches Supprimé :) ", "success");
+      } else {
+        Swal.fire(
+          "Annulé",
+          "Vous Avez Annulé la suppresion de ces taches.",
+          "error"
+        );
+      }
+    });
+  }
     return (
 <div>
   <SideBar />

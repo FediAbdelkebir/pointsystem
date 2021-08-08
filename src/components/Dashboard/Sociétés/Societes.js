@@ -20,10 +20,7 @@ export default function Societes() {
         denyButtonText: `Non, Annuler`,
       }).then((result) => {
         if (result.isConfirmed) {
-          axios.delete("http://localhost:4000/societes/:id",{
-        params: {
-          id: id
-        }});
+          axios.delete("http://localhost:4000/societes/"+id);
           Swal.fire("Success", "Votre tache a été Modifié :) ", "success");
         } else {
           Swal.fire(
@@ -46,10 +43,7 @@ export default function Societes() {
         denyButtonText: `Non, Annuler`,
       }).then((result) => {
         if (result.isConfirmed) {
-          axios.delete("http://localhost:4000/societes/:id",{
-        params: {
-          id: id
-        }});
+          axios.delete("http://localhost:4000/societes/"+id);
           Swal.fire("Success", "societes Supprimé :) ", "success");
         } else {
           Swal.fire(
@@ -119,9 +113,9 @@ function Trienom(){
                     >
                       <i className="fa fa-pencil"></i>
                     </Link>
-                    <a href="#" onClick={deletesociete} className="btn btn-danger shadow btn-xs sharp">
+                    <a href="#" onClick={(e) =>deletesociete(societe._id, e)} className="btn btn-danger shadow btn-xs sharp">
                       <i className="fa fa-trash"></i>
-                    </a>
+                      </a>
                   </div>
                 </td>
               </tr>

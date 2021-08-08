@@ -8,7 +8,7 @@ import Swal from "sweetalert2";
 export default function ModifierTache(props) {
   const [isLoading, setIsLoading] = useState(true);
   const [taches, setTaches] = useState([]);
-  const [tache, setTache] = useState({
+  const [Nouveautache, setNouveautache] = useState({
     Nom: "",
     Code: "",
     Description: "",
@@ -17,9 +17,9 @@ export default function ModifierTache(props) {
     Points: "",
   });
   
-  const handleChange = (e) => {
-    setTache({
-      tache,
+  const ModifierValeur = (e) => {
+    setNouveautache({
+      Nouveautache,
       [e.target.id]: e.target.value,
     });
   };
@@ -35,23 +35,23 @@ export default function ModifierTache(props) {
     }).then((result) => {
       if (result.isConfirmed) {
         Swal.fire("Success", "Votre tache a été Modifié :) ", "success");
-        tache.Nom = document.getElementById("NouveauNomTache").value;
-        tache.Code = document.getElementById("NouveauCodeTache").value;
-        tache.Description = document.getElementById("NouveauDescriptionTache").value;
-        tache.Etat = "En Cours";
-        tache.Points = document.getElementById("NouveauPointsTache").value;
-        tache.Responsable = "TestingTaches";
-        console.log({ tache });
+        Nouveautache.Nom = document.getElementById("NouveauNomTache").value;
+        Nouveautache.Code = document.getElementById("NouveauCodeTache").value;
+        Nouveautache.Description = document.getElementById("NouveauDescriptionTache").value;
+        Nouveautache.Etat = "En Cours";
+        Nouveautache.Points = document.getElementById("NouveauPointsTache").value;
+        Nouveautache.Responsable = "TestingTaches";
+        console.log("Nouveau Tache : ");
+        console.log({ Nouveautache });
 
         e.preventDefault();
-        axios
-          .put("http://localhost:4000/taches/updatetache/:id", {
-            Nom: tache.Nom,
-            Code: tache.Code,
-            Description: tache.Description,
-            Etat: tache.Etat,
-            Points: tache.Points,
-            Responsable: tache.Responsable,
+        axios.put("http://localhost:4000/taches/updatetache/"+props.id, {
+            Nom: Nouveautache.Nom,
+            Code: Nouveautache.Code,
+            Description: Nouveautache.Description,
+            Etat: Nouveautache.Etat,
+            Points: Nouveautache.Points,
+            Responsable: Nouveautache.Responsable,
           })
           .then((res) => {
             console.log(res.data);
@@ -104,7 +104,7 @@ export default function ModifierTache(props) {
                         placeholder="Nouveau Nom Complet De la tache"
                         id={"NouveauNomTache"}
                         name={"NouveauNomTache"}
-                        onChange={handleChange}
+                        onChange={ModifierValeur}
                         defaultValue={tache.Nom}
                       />
                     </div>
@@ -116,7 +116,7 @@ export default function ModifierTache(props) {
                         id={"NouveauCodeTache"}
                         name={"NouveauCodeTache"}
                         placeholder="NouveauCode Tache"
-                        onChange={handleChange}
+                        onChange={ModifierValeur}
                         defaultValue={tache.Code}
                       />
                     </div>
@@ -128,7 +128,7 @@ export default function ModifierTache(props) {
                         id={"NouveauPointsTache"}
                         name={"NouveauPointsTache"}
                         placeholder="Nouveau Nombre de points"
-                        onChange={handleChange}
+                        onChange={ModifierValeur}
                         defaultValue={tache.Points}
                       />
                     </div>
@@ -241,7 +241,7 @@ export default function ModifierTache(props) {
                         placeholder="Nouveau Description sur la tache.."
                         id={"NouveauDescriptionTache"}
                         name={"NouveauDescriptionTache"}
-                        onChange={handleChange}
+                        onChange={ModifierValeur}
                         defaultValue={tache.Description}
                       ></textarea>
                     </div>
