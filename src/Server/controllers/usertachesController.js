@@ -17,8 +17,26 @@ const getAllUserTaches = (req, res) => {
         }
     })
 }
+const getUserTaches = (req, res) => {
+    console.log("wssslt");
+    usertaches.find({iduser:req.params.iduser.trim()}, (err, usertaches) => {
+        console.log(usertaches);
+        if (err)
+            res.status(500).send({error: err})
+        else {
+            if (usertaches.length){
+                res.send(usertaches);
+            } 
+            else
+                //liste vide
+                {console.log("list vide");
+                res.sendStatus(204)}
+        }
+    })
+}
 
 const getUserTachesById = (req, res) => {
+    
     usertaches.find({_id: req.params.id.trim()}, (err, usertaches) => {
         if (err)
             res.status(500).send({error: err})
@@ -76,11 +94,27 @@ const deleteUserTaches = (req, res) => {
             res.send(error);
         });
 }
+const deleteTaches = (req, res) => {
+    
+    usertaches.findOneAndRemove({idtache: req.params.idtache.trim(),iduser: req.params.iduser.trim()})
+        .then(usertaches => {
+            if (usertaches) {               
+                res.send(usertaches);
+            } else {
+                res.status(404).send({error: "UserTaches Introuvable !"});
+            }
+        })
+        .catch(error => {
+            res.send(error);
+        });
+}
 
 module.exports = {
     getAllUserTaches,
     getUserTachesById,
+    getUserTaches,
     createUserTaches,
     updateUserTaches,
-    deleteUserTaches
+    deleteUserTaches,
+    deleteTaches
 }

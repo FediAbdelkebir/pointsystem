@@ -10,6 +10,7 @@ export default function AjouterTache() {
     const [users,setUsers]=useState([]);
     const [taches,setTaches]=useState([]);
     const [usertaches,setUserTaches]=useState([]);
+    const [UT,setUT]=useState([]);
 
     useEffect(()=>{
         axios.get("http://localhost:4000/taches/")
@@ -58,6 +59,33 @@ function handleajout(idtache,iduser){
         }
       });
 }
+function handledelete(idtache,iduser){
+  Swal.fire({
+      title: "Vous etez sur?",
+      text: "Veuillez Vérifier vos besoin avant de envoyé ",
+      icon: "warning",
+      showDenyButton: true,
+      confirmButtonText: `Oui, Supprimer`,
+      denyButtonText: `Non`,
+    }).then((result) => {
+      if (result.isConfirmed) {
+        
+        console.log(idtache,iduser);
+        axios
+          .delete("http://localhost:4000/usertaches/deleteusertaches/"+idtache+"/"+iduser)
+          .then((res) => {
+            Swal.fire("Success", "Vous avez supprimer cette tache :) ", "success");
+            console.log(res.data);
+          })
+          .catch((err) => {
+            Swal.fire("Oops", "Une Erreur au niveau de la suppresion", "error");
+            console.error(err);
+          });
+      } else {
+        Swal.fire("Annulé", "Vous Avez Annulé la Suppresion.", "error");
+      }
+    });
+}
 
 function Ajouter(iduser){
 let idtache="";
@@ -94,35 +122,41 @@ Swal.fire({
         }
       });
 }
-function Supprimer(){
+function Supprimer(iduser){
+  let idtache="";
+  
+    axios.get("http://localhost:4000/usertaches/listtaches/"+iduser)
+    .then(res=>{
+        setUT(res.data);
+        setIsLoading(false);
+    })
+    .catch(err=>console.log)
+
+
+  const ValueList=UT.reduce((a, c) => {
+    a[c._id] = c.idtache
+    return a
+   }, {});
     Swal.fire({
             title: 'Supprimer Une Tache',
             input: 'select',
-            inputOptions: {
-              'Taches': {
-                apples: 'Apples',
-                bananas: 'Bananas',
-                grapes: 'Grapes',
-                oranges: 'Oranges'
-              }
-            },
+            inputOptions: {ValueList},
             inputPlaceholder: 'Selectioner une tache a supprimer',
             showDenyButton: true,
             confirmButtonText: `Supprimer`,
             denyButtonText: `Non`,
             inputValidator: (value) => {
-              return new Promise((resolve) => {
-                  resolve('Vous Allez supprimer Cette Tache de ')
-              })
+              idtache=value;
             }
           }).then((result) => {
             if (result.isConfirmed) {
-    
+              handledelete(idtache,iduser);
             }else{
     
             }
           });
     }
+
     function Valider(){
         Swal.fire({
                 title: 'Valider Une Tache',
@@ -162,7 +196,7 @@ function Supprimer(){
                 <img src="https://cdn.discordapp.com/attachments/475963741616472074/872798593101225984/IMG_20210617_021024_482.jpg"/>
                     <h4 className="my-2">{user.Nom}</h4>
                     
-                    <a href="javascript:void(0);" className="btn btn-rounded  my-1 btn-sm btn-danger px-4" onClick={Supprimer}>Supprimer <span className="btn-icon-left text-danger"><i className="fa fa-minus-square"></i></span>
+                    <a href="javascript:void(0);" className="btn btn-rounded  my-1 btn-sm btn-danger px-4" onClick={(e) =>Supprimer(user._id)}>Supprimer <span className="btn-icon-left text-danger"><i className="fa fa-minus-square"></i></span>
                     </a>&nbsp;
                     <a href="javascript:void(0);" className="btn btn-rounded  my-1 btn-sm btn-info px-4" onClick={(e) =>Ajouter(user._id)}>Ajouter <span className="btn-icon-left text-info"><i className="fa fa-plus-square"></i></span></a>&nbsp;
                     <a href="javascript:void(0);" className="btn btn-rounded  my-1 btn-sm btn-success px-4" onClick={Valider}>Valider <span className="btn-icon-left text-success"><i className="fa fa-check"></i></span></a>&nbsp;
