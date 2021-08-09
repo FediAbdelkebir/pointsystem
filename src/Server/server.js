@@ -23,7 +23,7 @@ app.use(cors());
 app.use("/users", userRoutes);
 app.use("/taches", tacheRoutes);
 app.use("/societes", societeRoutes);
-app.use("/usertaches", societeRoutes);
+app.use("/usertaches", usertachesRoutes);
 
 
 

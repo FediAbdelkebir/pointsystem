@@ -9,6 +9,8 @@ export default function AjouterTache() {
     const [isLoading, setIsLoading] = useState(true);
     const [users,setUsers]=useState([]);
     const [taches,setTaches]=useState([]);
+    const [usertaches,setUserTaches]=useState([]);
+
     useEffect(()=>{
         axios.get("http://localhost:4000/taches/")
         .then(res=>{
@@ -18,7 +20,7 @@ export default function AjouterTache() {
         })
         .catch(err=>console.log)
     }, []);
-    
+
     useEffect(()=>{
         axios.get("http://localhost:4000/users")
         .then(res=>{
@@ -27,29 +29,68 @@ export default function AjouterTache() {
         })
         .catch(err=>console.log)
     }, []);
-function Ajouter(){
+
+function handleajout(idtache,iduser){
+    Swal.fire({
+        title: "Vous etez sur?",
+        text: "Veuillez Vérifier vos besoin avant de envoyé ",
+        icon: "warning",
+        showDenyButton: true,
+        confirmButtonText: `Ajouter`,
+        denyButtonText: `Non`,
+      }).then((result) => {
+        if (result.isConfirmed) {
+          Swal.fire("Success", "Votre tache a été créé :) ", "success");
+          console.log(idtache,iduser);
+          axios
+            .post("http://localhost:4000/usertaches/createusertaches", {
+              idtache: idtache,
+              iduser: iduser,
+            })
+            .then((res) => {
+              console.log(res.data);
+            })
+            .catch((err) => {
+              console.error(err);
+            });
+        } else {
+          Swal.fire("Annulé", "Vous Avez Annulé l'ajout d'une tache.", "error");
+        }
+      });
+}
+
+function Ajouter(iduser){
+let idtache="";
+
+const ValueList=taches.reduce((a, c) => {
+  a[c._id] = c.Nom
+  return a
+ }, {});
+    axios.get("http://localhost:4000/usertaches/"+iduser)
+        .then(res=>{
+            console.log(res);
+            setUserTaches(res.data);
+            setIsLoading(false);
+        })
+        .catch(err=>console.log)
+
 Swal.fire({
         title: 'Ajouter Une Tache',
         input: 'select',
-        inputOptions: {
-          'Taches': {
-            Nom: taches.map(tache=>{return tache.Nom})
-          }
-        },
+        inputOptions: {ValueList},
         inputPlaceholder: 'Selectioner une tache',
         showDenyButton: true,
         confirmButtonText: `Ajouter`,
         denyButtonText: `Non`,
-        inputValidator: (value) => {
-          return new Promise((resolve) => {
-              resolve('Vous Allez Ajouter Cette Tache a ')
-          })
+        inputValidator: function (value) {
+          idtache=value;
         }
       }).then((result) => {
         if (result.isConfirmed) {
+          handleajout(idtache,iduser);
+        } else {
 
-        }else{
-
+          Swal.fire("Annulé", "Vous Avez Annulé ", "error");
         }
       });
 }
@@ -114,17 +155,16 @@ function Supprimer(){
     const UsersTaches = isLoading ? (
         <h3>Loading Users...</h3>
       ) : users.length ? (
-        users.map((tache) => {
+        users.map((user) => {
           return (
-              
-            <div className="card col-3" key={users._id}>
+            <div className="card col-3" key={user._id}>
                 <div className="card-body text-center ai-icon text-primary">
                 <img src="https://cdn.discordapp.com/attachments/475963741616472074/872798593101225984/IMG_20210617_021024_482.jpg"/>
-                    <h4 className="my-2">{users.Nom}</h4>
+                    <h4 className="my-2">{user.Nom}</h4>
                     
                     <a href="javascript:void(0);" className="btn btn-rounded  my-1 btn-sm btn-danger px-4" onClick={Supprimer}>Supprimer <span className="btn-icon-left text-danger"><i className="fa fa-minus-square"></i></span>
                     </a>&nbsp;
-                    <a href="javascript:void(0);" className="btn btn-rounded  my-1 btn-sm btn-info px-4" onClick={Ajouter}>Ajouter <span className="btn-icon-left text-info"><i className="fa fa-plus-square"></i></span></a>&nbsp;
+                    <a href="javascript:void(0);" className="btn btn-rounded  my-1 btn-sm btn-info px-4" onClick={(e) =>Ajouter(user._id)}>Ajouter <span className="btn-icon-left text-info"><i className="fa fa-plus-square"></i></span></a>&nbsp;
                     <a href="javascript:void(0);" className="btn btn-rounded  my-1 btn-sm btn-success px-4" onClick={Valider}>Valider <span className="btn-icon-left text-success"><i className="fa fa-check"></i></span></a>&nbsp;
                 </div>
                 

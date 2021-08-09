@@ -32,8 +32,9 @@ const getUserTachesById = (req, res) => {
 }
 
 const createUserTaches = (req, res) => {
-    const {name, email, enrollnumber} = req.body;
-    usertaches.create({ name, email, enrollnumber }, (err, usertaches)=>{
+    console.log("wslt");
+    const {idtache, iduser} = req.body;
+    usertaches.create({ idtache, iduser }, (err, usertaches)=>{
         if(err)
             res.status(500).send({error: err})
         else

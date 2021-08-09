@@ -19,4 +19,4 @@ const usertachesSchema = new Schema({
     timestamps: true
 });
 
-module.exports = model('usertaches', usertachesSchema,'usertaches');
+module.exports = model('usertaches', usertachesSchema,'UserTaches');
