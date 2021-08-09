@@ -87,6 +87,7 @@ function handledelete(idtache,iduser){
     });
 }
 
+
 function Ajouter(iduser){
 let idtache="";
 
@@ -124,19 +125,23 @@ Swal.fire({
 }
 function Supprimer(iduser){
   let idtache="";
-  
+  let ValueList="";
     axios.get("http://localhost:4000/usertaches/listtaches/"+iduser)
     .then(res=>{
         setUT(res.data);
         setIsLoading(false);
     })
     .catch(err=>console.log)
-
-
-  const ValueList=UT.reduce((a, c) => {
-    a[c._id] = c.idtache
+if (UT.length>0){
+   ValueList=UT.reduce((a, c) => {
+    a[c._id] = taches.find((tache)=>{
+      if(tache._id == c.idtache){
+        return tache.Nom;
+      }
+    })
     return a
    }, {});
+}
     Swal.fire({
             title: 'Supprimer Une Tache',
             input: 'select',
@@ -152,40 +157,76 @@ function Supprimer(iduser){
             if (result.isConfirmed) {
               handledelete(idtache,iduser);
             }else{
-    
+                Swal.fire("Vous Avez Annuler");
             }
           });
     }
 
-    function Valider(){
+    function handleValider(idtache){
+      Swal.fire({
+          title: "Vous etez sur?",
+          text: "Veuillez Vérifier vos besoin avant de envoyé ",
+          icon: "warning",
+          showDenyButton: true,
+          confirmButtonText: `Oui, Valider`,
+          denyButtonText: `Non`,
+        }).then((result) => {
+          if (result.isConfirmed) {
+            console.log(idtache);
+            axios
+              .put("http://localhost:4000/taches/updatetache/"+idtache)
+              .then((res) => {
+                Swal.fire("Success", "Vous avez valider cette tache :) ", "success");
+                console.log(res.data);
+              })
+              .catch((err) => {
+                Swal.fire("Oops", "Une Erreur au niveau de la validation", "error");
+                console.error(err);
+              });
+          } else {
+            Swal.fire("Annulé", "Vous Avez Annulé la validation.", "error");
+          }
+        });
+    }
+    function Valider(iduser){
+      let idtache="";
+      let ValueList="";
+        axios.get("http://localhost:4000/usertaches/listtaches/"+iduser)
+        .then(res=>{
+            setUT(res.data);
+            setIsLoading(false);
+        })
+        .catch(err=>console.log)
+    if (UT.length>0){
+       ValueList=UT.reduce((a, c) => {
+        a[c._id] = taches.find((tache)=>{
+          if(tache._id == c.idtache){
+            return tache.Nom;
+          }
+        })
+        return a
+       }, {});
+    }
         Swal.fire({
                 title: 'Valider Une Tache',
                 input: 'select',
-                inputOptions: {
-                  'Taches': {
-                    apples: 'Apples',
-                    bananas: 'Bananas',
-                    grapes: 'Grapes',
-                    oranges: 'Oranges'
-                  }
-                },
-                inputPlaceholder: 'Selectioner une tache a valider',
+                inputOptions: {ValueList},
+                inputPlaceholder: 'Selectioner une tache a Valider',
                 showDenyButton: true,
-                confirmButtonText: `Supprimer`,
+                confirmButtonText: `Valider`,
                 denyButtonText: `Non`,
                 inputValidator: (value) => {
-                  return new Promise((resolve) => {
-                      resolve('Vous Allez Ajouter Cette Tache a Valider')
-                  })
+                  idtache=value;
                 }
               }).then((result) => {
                 if (result.isConfirmed) {
-        
+                  handleValider(idtache);
                 }else{
-        
+                    Swal.fire("Vous Avez Annuler la Validation");
                 }
               });
         }
+
     const UsersTaches = isLoading ? (
         <h3>Loading Users...</h3>
       ) : users.length ? (
@@ -199,7 +240,7 @@ function Supprimer(iduser){
                     <a href="javascript:void(0);" className="btn btn-rounded  my-1 btn-sm btn-danger px-4" onClick={(e) =>Supprimer(user._id)}>Supprimer <span className="btn-icon-left text-danger"><i className="fa fa-minus-square"></i></span>
                     </a>&nbsp;
                     <a href="javascript:void(0);" className="btn btn-rounded  my-1 btn-sm btn-info px-4" onClick={(e) =>Ajouter(user._id)}>Ajouter <span className="btn-icon-left text-info"><i className="fa fa-plus-square"></i></span></a>&nbsp;
-                    <a href="javascript:void(0);" className="btn btn-rounded  my-1 btn-sm btn-success px-4" onClick={Valider}>Valider <span className="btn-icon-left text-success"><i className="fa fa-check"></i></span></a>&nbsp;
+                    <a href="javascript:void(0);" className="btn btn-rounded  my-1 btn-sm btn-success px-4" onClick={(e) =>Valider(user._id)}>Valider <span className="btn-icon-left text-success"><i className="fa fa-check"></i></span></a>&nbsp;
                 </div>
                 
             </div>

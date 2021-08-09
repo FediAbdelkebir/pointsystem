@@ -18,7 +18,6 @@ const getAllUserTaches = (req, res) => {
     })
 }
 const getUserTaches = (req, res) => {
-    console.log("wssslt");
     usertaches.find({iduser:req.params.iduser.trim()}, (err, usertaches) => {
         console.log(usertaches);
         if (err)
@@ -95,8 +94,8 @@ const deleteUserTaches = (req, res) => {
         });
 }
 const deleteTaches = (req, res) => {
-    
-    usertaches.findOneAndRemove({idtache: req.params.idtache.trim(),iduser: req.params.iduser.trim()})
+    console.log("DeleteTaches")
+    usertaches.findOneAndRemove({_id: req.params.idtache.trim(),iduser: req.params.iduser.trim()})
         .then(usertaches => {
             if (usertaches) {               
                 res.send(usertaches);
