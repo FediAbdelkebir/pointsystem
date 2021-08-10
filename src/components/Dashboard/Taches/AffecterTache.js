@@ -163,7 +163,7 @@ if (UT.length>0){
           });
     }
 
-    function handleValider(idtache){
+    function handleValider(idtache,iduser){
       Swal.fire({
           title: "Vous etez sur?",
           text: "Veuillez Vérifier vos besoin avant de envoyé ",
@@ -175,7 +175,7 @@ if (UT.length>0){
           if (result.isConfirmed) {
             console.log(idtache);
             axios
-              .put("http://localhost:4000/taches/ValiderTache/"+idtache)
+              .put("http://localhost:4000/taches/ValiderTache/"+idtache,{iduser:iduser})
               .then((res) => {
                 Swal.fire("Success", "Vous avez valider cette tache :) ", "success");
                 console.log(res.data);
@@ -221,7 +221,7 @@ if (UT.length>0){
                 }
               }).then((result) => {
                 if (result.isConfirmed) {
-                  handleValider(idtache);
+                  handleValider(idtache,iduser);
                 }else{
                     Swal.fire("Vous Avez Annuler la Validation");
                 }

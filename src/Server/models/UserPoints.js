@@ -5,6 +5,8 @@ const userpointsSchema = new Schema({
     iduser: {
         type: String,
         required: true,
+        unique:true,
+        dropDups: true,
         minlength: 3,
         maxlength: 33,
         trim: true

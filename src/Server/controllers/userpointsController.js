@@ -47,7 +47,18 @@ const getUserPointsById = (req, res) => {
         }
     })
 }
-
+const findUser = (req, res) => {
+    userpoints.find({iduser: req.params.iduser.trim()}, (err, userpoints) => {
+        if (err)
+            res.status(500).send({error: err})
+        else {
+            if (userpoints) 
+                res.send(userpoints);
+            else 
+                res.status(404).send({error: "Utilisateur Introuvable !"});
+        }
+    })
+}
 const createUserPoints = (req, res) => {
     console.log("wslt");
     const {iduser, points} = req.body;
@@ -60,13 +71,14 @@ const createUserPoints = (req, res) => {
 }
 
 const updateUserPoints = (req, res) => {
-    userpoints.findOne({_id: req.params.id.trim()}, (findErr, userpoints)=>{
+    userpoints.findOne({iduser: req.params.iduser.trim()}, (findErr, userpoints)=>{
         if(findErr)
             res.status(500).send({error: findErr});
-        else {
-            const {iduser, points} = req.body;
+        else { 
+
+            const {points} = req.body;
+            console.log("nombre des points :"+points)
             //possibility to check the fields (validation) before saving !!!!!!!!!!!!!!!!!!!!!!
-            userpoints.iduser = iduser;
             userpoints.points = points;
             userpoints.save()
                 .then(modifiedUser=>{
@@ -116,5 +128,6 @@ module.exports = {
     createUserPoints,
     updateUserPoints,
     deleteUserPoints,
-    deletePoints
+    deletePoints,
+    findUser
 }
