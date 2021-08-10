@@ -80,6 +80,7 @@ const updateUserTaches = (req, res) => {
 }
 
 
+
 const deleteUserTaches = (req, res) => {
     usertaches.findOneAndRemove({_id: req.params.id.trim()})
         .then(usertaches => {

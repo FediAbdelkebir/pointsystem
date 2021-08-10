@@ -10,6 +10,7 @@ const userRoutes = require("./routes/userRoutes");
 const tacheRoutes = require("./routes/tacheRoutes");
 const societeRoutes = require("./routes/SocietesRoutes");
 const usertachesRoutes = require("./routes/UserTachesRoutes");
+const userpointsRoutes = require("./routes/UserPointsRoutes");
 //express app init
 const app = express();
 
@@ -24,6 +25,7 @@ app.use("/users", userRoutes);
 app.use("/taches", tacheRoutes);
 app.use("/societes", societeRoutes);
 app.use("/usertaches", usertachesRoutes);
+app.use("/userpoints", userpointsRoutes);
 
 
 

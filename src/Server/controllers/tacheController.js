@@ -64,7 +64,23 @@ const updateTache = (req, res) => {
         }
     })    
 }
-
+const Valider = (req, res) => {
+    Tache.findOne({_id: req.params.id.trim()}, (findErr, tache)=>{
+        if(findErr)
+            res.status(500).send({error: findErr});
+        else {
+            //possibility to check the fields (validation) before saving !!!!!!!!!!!!!!!!!!!!!!
+            tache.Etat="Validé"
+            tache.save()
+                .then(modifiedUser=>{
+                    res.send(modifiedUser)
+                })
+                .catch(modErr=>{
+                    res.send(500).send({error: modErr});
+                })
+        }
+    })    
+}
 
 const deleteTache = (req, res) => {
     Tache.findOneAndRemove({_id: req.params.id.trim()})
@@ -85,5 +101,6 @@ module.exports = {
     getTacheById,
     createTache,
     updateTache,
-    deleteTache
+    deleteTache,
+    Valider
 }

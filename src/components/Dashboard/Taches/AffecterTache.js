@@ -175,7 +175,7 @@ if (UT.length>0){
           if (result.isConfirmed) {
             console.log(idtache);
             axios
-              .put("http://localhost:4000/taches/updatetache/"+idtache)
+              .put("http://localhost:4000/taches/ValiderTache/"+idtache)
               .then((res) => {
                 Swal.fire("Success", "Vous avez valider cette tache :) ", "success");
                 console.log(res.data);
@@ -200,7 +200,7 @@ if (UT.length>0){
         .catch(err=>console.log)
     if (UT.length>0){
        ValueList=UT.reduce((a, c) => {
-        a[c._id] = taches.find((tache)=>{
+        a[c.idtache] = taches.find((tache)=>{
           if(tache._id == c.idtache){
             return tache.Nom;
           }
