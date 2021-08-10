@@ -6,6 +6,7 @@ import SideBar from "../SideBar";
 import Swal from "sweetalert2";
 
 export default function ModifierTache(props) {
+    const id = props.match.params.id.trim();
   const [isLoading, setIsLoading] = useState(true);
   const [taches, setTaches] = useState([]);
   const [Nouveautache, setNouveautache] = useState({
@@ -45,7 +46,7 @@ export default function ModifierTache(props) {
         console.log({ Nouveautache });
 
         e.preventDefault();
-        axios.put("http://localhost:4000/taches/updatetache/"+props.id, {
+        axios.put(`http://localhost:4000/taches/updatetache/${id}`, {
             Nom: document.getElementById("NouveauNomTache").value,
             Code: document.getElementById("NouveauCodeTache").value,
             Description: document.getElementById("NouveauDescriptionTache").value,
@@ -55,6 +56,7 @@ export default function ModifierTache(props) {
           })
           .then((res) => {
             console.log(res.data);
+            props.history.push("/Taches");
           })
           .catch((err) => {
             console.error(err);
@@ -70,7 +72,7 @@ export default function ModifierTache(props) {
   };
   useEffect(() => {
     axios
-      .get("http://localhost:4000/taches/tache/" + props.id)
+      .get(`http://localhost:4000/taches/tache/${id}`)
       .then((res) => {
         setTaches(res.data);
         setIsLoading(false);

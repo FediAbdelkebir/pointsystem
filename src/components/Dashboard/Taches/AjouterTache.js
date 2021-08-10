@@ -4,10 +4,7 @@ import '../../vendor/bootstrap-select/dist/css/bootstrap-select.min.css';
 import '../../css/style.css';
 import SideBar from '../SideBar';
 import Swal from "sweetalert2";
-import { useHistory } from "react-router-dom";
-
-export default function AjouterTache() {
-  let history = useHistory();
+export default function AjouterTache({history}) {
     const [tache, setTache] = useState({
         Nom: "",
         Code: "",

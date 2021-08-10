@@ -53,7 +53,8 @@ const updateTache = (req, res) => {
             tache.Points=Points;
             tache.Responsable=Responsable;
             tache.Etat=Etat;
-            Tache.save()
+            //save using tache not Tache (cz tache is the modified var and Tache is the model name) !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+            tache.save()
                 .then(modifiedTache=>{
                     res.send(modifiedTache)
                 })

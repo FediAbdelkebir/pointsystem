@@ -84,6 +84,7 @@ export default function Taches() {
           )
       })
   ): <h3>Empty List !</h3>;
+
   function deletetache(id) {
     Swal.fire({
       title: "Vous etez sur?",
@@ -96,6 +97,10 @@ export default function Taches() {
       if (result.isConfirmed) {
         axios.delete("http://localhost:4000/taches/deletetache/"+id);
         Swal.fire("Success", "Tache Supprimé :) ", "success");
+        let newList = taches.filter(tache=>{
+            return tache._id !== id;
+        })
+        setTaches(newList);
       } else {
         Swal.fire(
           "Annulé",

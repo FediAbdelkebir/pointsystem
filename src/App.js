@@ -19,7 +19,7 @@ function App(props) {
                 <Route path={"/AjouterSocietes"} render={(props)=><AjouterSocietes {...props} />} />
                 <Route path={"/Societes"} render={(props)=><Societes {...props} />} />
                 <Route exact path="/ModifierSociete/:id" render={(props) => (<ModiferSociete id = {props.match.params.id} /> )}/>
-                <Route exact path="/ModifierTache/:id" render={(props) => (<ModifierTache id = {props.match.params.id} /> )}/>
+                <Route path="/ModifierTache/:id" render={(props) => <ModifierTache {...props} /> }/>
             
             </Switch>
         </div>
