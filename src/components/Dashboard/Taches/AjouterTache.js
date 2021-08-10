@@ -5,7 +5,7 @@ import '../../css/style.css';
 import SideBar from '../SideBar';
 import Swal from "sweetalert2";
 
-export default function AjouterTache() {
+export default function AjouterTache({history}) {
     const [tache, setTache] = useState({
         Nom: "",
         Code: "",
@@ -52,6 +52,7 @@ export default function AjouterTache() {
               })
               .then((res) => {
                 console.log(res.data);
+                history.push("/Taches");
               })
               .catch((err) => {
                 console.error(err);
