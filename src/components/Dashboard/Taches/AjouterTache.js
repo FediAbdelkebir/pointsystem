@@ -4,8 +4,10 @@ import '../../vendor/bootstrap-select/dist/css/bootstrap-select.min.css';
 import '../../css/style.css';
 import SideBar from '../SideBar';
 import Swal from "sweetalert2";
+import { useHistory } from "react-router-dom";
 
 export default function AjouterTache() {
+  let history = useHistory();
     const [tache, setTache] = useState({
         Nom: "",
         Code: "",
@@ -31,7 +33,7 @@ export default function AjouterTache() {
           denyButtonText: `Non`,
         }).then((result) => {
           if (result.isConfirmed) {
-            Swal.fire("Success", "Votre tache a été créé :) ", "success");
+            
             tache.Nom = document.getElementById("NomTache").value;
             tache.Code = document.getElementById("CodeTache").value;
             tache.Description = document.getElementById("DescriptionTache").value;
@@ -51,9 +53,12 @@ export default function AjouterTache() {
                 Responsable:tache.Responsable,
               })
               .then((res) => {
+                Swal.fire("Success", "Votre tache a été créé :) ", "success");
                 console.log(res.data);
+                history.push("/Taches");
               })
               .catch((err) => {
+                Swal.fire("Ooops", "Une Erreur au niveau de l'insertion ", "error");
                 console.error(err);
               });
           } else {
@@ -136,7 +141,7 @@ export default function AjouterTache() {
                                         
                                         
                                     </form>
-                                    <button className="btn btn-primary" onClick={handleClick}><i className="fa fa-plus-square"></i> Ajouter Societe</button>
+                                    <button className="btn btn-primary" onClick={handleClick}><i className="fa fa-plus-square"></i> Ajouter Tache</button>
                                 </div>
                             </div>
     </div>

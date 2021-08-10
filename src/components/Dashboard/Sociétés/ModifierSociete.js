@@ -4,8 +4,10 @@ import "../../vendor/bootstrap-select/dist/css/bootstrap-select.min.css";
 import "../../css/style.css";
 import SideBar from "../SideBar";
 import Swal from "sweetalert2";
+import { useHistory } from "react-router-dom";
 
 export default function ModifierSociete(props) {
+  let history = useHistory();
 const [isLoading, setIsLoading] = useState(true);
 const [societes,setSocietes]=useState([]);
   const [societe, oldSociete] = useState({
@@ -37,19 +39,19 @@ const [societes,setSocietes]=useState([]);
     }).then((result) => {
       if (result.isConfirmed) {
         Swal.fire("Success", "Votre Societe a été modifié :) ", "success");
-
-
         e.preventDefault();
         axios
-          .put("http://localhost:4000/societes/UpdateSociete/:id", {
+          .put("http://localhost:4000/societes/UpdateSociete/"+props.id, {
             Nom: societe.Nom,
             Code: societe.Code,
             SUPAD: societe.SUPAD,
           })
           .then((res) => {
             console.log(res.data);
+            history.push("/Societes");
           })
           .catch((err) => {
+            Swal.fire("Ooops", "Une Erreur au niveau de la Modification ", "error");
             console.error(err);
           });
       } else {

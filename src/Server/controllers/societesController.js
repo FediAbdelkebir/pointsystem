@@ -47,11 +47,11 @@ const updateSociete = (req, res) => {
         if(findErr)
             res.status(500).send({error: findErr});
         else {
-            const {name, email, enrollnumber} = req.body;
+            const { Nom, Code, SUPAD}= req.body;
             //possibility to check the fields (validation) before saving !!!!!!!!!!!!!!!!!!!!!!
-            Societe.name = name;
-            Societe.email = email;
-            Societe.enrollnumber = enrollnumber;
+            Societe.Nom = Nom;
+            Societe.Code = Code;
+            Societe.SUPAD = SUPAD;
             Societe.save()
                 .then(modifiedSociete=>{
                     res.send(modifiedSociete)

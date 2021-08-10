@@ -4,8 +4,10 @@ import "../../vendor/bootstrap-select/dist/css/bootstrap-select.min.css";
 import "../../css/style.css";
 import SideBar from "../SideBar";
 import Swal from "sweetalert2";
+import { useHistory } from "react-router-dom";
 
 export default function AjouterSociete() {
+  let history = useHistory();
   const [societe, setSociete] = useState({
     Nom: "",
     Code: "",
@@ -28,7 +30,7 @@ export default function AjouterSociete() {
       denyButtonText: `Non`,
     }).then((result) => {
       if (result.isConfirmed) {
-        Swal.fire("Success", "Votre Societe a été créé :) ", "success");
+        
         societe.Nom = document.getElementById("NomSociete").value;
         societe.Code = document.getElementById("CodeSociete").value;
         societe.SUPAD = document.getElementById("SUPAD").value;
@@ -42,9 +44,12 @@ export default function AjouterSociete() {
             SUPAD: societe.SUPAD,
           })
           .then((res) => {
+            Swal.fire("Success", "Votre Societe a été créé :) ", "success");
             console.log(res.data);
+            history.push("/Societes");
           })
           .catch((err) => {
+            Swal.fire("Ooops", "Une Erreur au niveau de l'insertion ", "error");
             console.error(err);
           });
       } else {
@@ -52,37 +57,6 @@ export default function AjouterSociete() {
       }
     });
   };
-  /* function test(){
-        Swal.fire({
-            title: "Vous etez sur?",
-			text: "Veuillez Vérifier vos besoin avant de envoyé ",
-			icon: 'warning',
-            showDenyButton: true,
-            confirmButtonText: `Ajouter`,
-            denyButtonText: `Non`,
-          }).then((result) => {
-            if (result.isConfirmed) {
-              
-            Swal.fire("Success", "Votre Societe a été créé :) ", "success");
-            societe.Nom=document.getElementById("NomSociete").value;
-    societe.Code=document.getElementById("CodeSociete").value;
-    societe.SUPAD=document.getElementById("SUPAD").value;
-    console.log({societe});
-
-    e.preventDefault();
-    axios.post("http://localhost:4000/societes/create",{"Nom":societe.Nom,"Code":societe.Code,"SUPAD":societe.SUPAD})
-        .then(res=>{
-            console.log(res.data);
-        })
-        .catch(err=>{
-            console.error(err);
-        });
-            }else{
-                Swal.fire("Annulé", "Vous Avez Annulé l'ajout d'une societe.", "error");
-            }
-          })
-        }
-    */
   return (
     <div Style="font-family: 'poppins', sans-serif;">
       <SideBar />

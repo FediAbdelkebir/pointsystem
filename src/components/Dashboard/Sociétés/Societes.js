@@ -64,9 +64,18 @@ export default function Societes() {
         .catch(err=>console.log)
     }, []);
 function Trienom(){
-  societes.sort((a, b) => a.Nom > b.Nom ? 1 : -1)
-  societes.sort((a, b) => a.Code > b.Code ? 1 : -1)
-  societes.sort((a, b) => a.SUPAD > b.SUPAD ? 1 : -1)
+  let SortedNom=societes.sort((a, b) => a.Nom > b.Nom ? 1 : -1);
+  setSocietes(SortedNom);
+  console.log(societes);
+}
+function TrieCode(){
+  let SortedCode=societes.sort((a, b) => a.Code > b.Code ? 1 : -1);
+  setSocietes(SortedCode);
+  console.log(societes);
+}
+function TrieResponsable(){
+  let SortedSUPAD=societes.sort((a, b) => a.SUPAD > b.SUPAD ? 1 : -1);
+  setSocietes(SortedSUPAD);
   console.log(societes);
 }
     const content = isLoading ? <h3>Loading Societes...</h3> : societes.length ? (
@@ -75,13 +84,13 @@ function Trienom(){
             return(
                     <tr key={societe._id}>
                 <td>
-                  <div className="custom-control custom-checkbox checkbox-success check-lg mr-3">
+                  <div className="custom-control custom-checkbox checkbox-success check-lg mr-3" name={societe._id}>
                     <input
                       type="checkbox"
                       className="custom-control-input"
-                      id={"societe.Code"}
+                      id={societe._id}
                       required=""
-                      name={"societe.Code"}
+                      name={societe._id}
                     />
                     <label
                       className="custom-control-label"
@@ -171,9 +180,9 @@ function Trienom(){
 
         </div>
         
-        <a  className="btn btn-info ml-auto" onClick={Trienom}> <i className="fa fa-sort"></i> Trie Par Nom</a>
-          <a href="#" className="btn btn-info ml-auto"><i className="fa fa-sort"></i> Trie Par Code</a>
-          <a href="#" className="btn btn-info ml-auto"><i className="fa fa-sort"></i> Trie Par Responsable</a>
+        <a  href="#" className="btn btn-info ml-auto" onClick={Trienom}> <i className="fa fa-sort"></i> Trie Par Nom</a>
+          <a href="#" className="btn btn-info ml-auto" onClick={TrieCode}><i className="fa fa-sort"></i> Trie Par Code</a>
+          <a href="#" className="btn btn-info ml-auto" onClick={TrieResponsable}><i className="fa fa-sort"></i> Trie Par Responsable</a>
         <Link to={`/AjouterSocietes`} className="btn btn-primary ml-auto"><i className="fa fa-plus-circle"></i> Ajouter Societes</Link>
       </div>
       <div className="card-body">

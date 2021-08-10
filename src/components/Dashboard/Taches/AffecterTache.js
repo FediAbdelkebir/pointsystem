@@ -52,6 +52,7 @@ function handleajout(idtache,iduser){
               console.log(res.data);
             })
             .catch((err) => {
+              Swal.fire("Ooops", "Une Erreur au niveau de l'ajout' ", "error");
               console.error(err);
             });
         } else {
