@@ -5,6 +5,7 @@ import '../../css/style.css';
 import SideBar from '../SideBar';
 import {Link} from "react-router-dom";
 import Swal from "sweetalert2";
+import {sortBy} from "underscore";
 
 export default function Societes() {
     const [isLoading, setIsLoading] = useState(true);
@@ -63,20 +64,25 @@ export default function Societes() {
         })
         .catch(err=>console.log)
     }, []);
-function Trienom(){
-  let SortedNom=societes.sort((a, b) => a.Nom > b.Nom ? 1 : -1);
-  setSocietes(SortedNom);
-  console.log(societes);
+function Trienom(e){
+    e.preventDefault();
+  //let SortedNom = societes.sort((a, b) => a.Nom > b.Nom ? 1 : -1);
+  //setSocietes(SortedNom);
+  //console.log(societes);
+  setSocietes(sortBy(societes, "Nom"));
 }
-function TrieCode(){
-  let SortedCode=societes.sort((a, b) => a.Code > b.Code ? 1 : -1);
-  setSocietes(SortedCode);
-  console.log(societes);
+function TrieCode(e){
+    e.preventDefault();
+  //setSocietes(societes.sort((a, b) => a.Code > b.Code ? 1 : -1));
+  //console.log(societes);
+  setSocietes(sortBy(societes, "Code"));
 }
-function TrieResponsable(){
-  let SortedSUPAD=societes.sort((a, b) => a.SUPAD > b.SUPAD ? 1 : -1);
-  setSocietes(SortedSUPAD);
-  console.log(societes);
+function TrieResponsable(e){
+    e.preventDefault();
+  //let SortedSUPAD=societes.sort((a, b) => a.SUPAD > b.SUPAD ? 1 : -1);
+  //setSocietes(SortedSUPAD);
+  //console.log(societes);
+  setSocietes(sortBy(societes, "SUPAD"));
 }
     const content = isLoading ? <h3>Loading Societes...</h3> : societes.length ? (
         societes
