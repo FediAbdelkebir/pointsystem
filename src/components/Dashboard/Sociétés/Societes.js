@@ -66,22 +66,14 @@ export default function Societes() {
     }, []);
 function Trienom(e){
     e.preventDefault();
-  //let SortedNom = societes.sort((a, b) => a.Nom > b.Nom ? 1 : -1);
-  //setSocietes(SortedNom);
-  //console.log(societes);
   setSocietes(sortBy(societes, "Nom"));
 }
 function TrieCode(e){
     e.preventDefault();
-  //setSocietes(societes.sort((a, b) => a.Code > b.Code ? 1 : -1));
-  //console.log(societes);
   setSocietes(sortBy(societes, "Code"));
 }
 function TrieResponsable(e){
     e.preventDefault();
-  //let SortedSUPAD=societes.sort((a, b) => a.SUPAD > b.SUPAD ? 1 : -1);
-  //setSocietes(SortedSUPAD);
-  //console.log(societes);
   setSocietes(sortBy(societes, "SUPAD"));
 }
     const content = isLoading ? <h3>Loading Societes...</h3> : societes.length ? (

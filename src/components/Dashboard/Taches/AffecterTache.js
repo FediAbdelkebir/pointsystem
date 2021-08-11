@@ -228,6 +228,7 @@ if (UT.length>0){
               });
         }
 
+
     const UsersTaches = isLoading ? (
         <h3>Loading Users...</h3>
       ) : users.length ? (
@@ -273,10 +274,6 @@ if (UT.length>0){
           <input type="text" className="form-control" placeholder="Search here" />&nbsp;
 
         </div>
-        
-        <a  className="btn btn-info ml-auto"> <i className="fa fa-sort"></i>Nom</a>
-          <a href="#" className="btn btn-info ml-auto"><i className="fa fa-sort"></i>Taches</a>
-          <a href="#" className="btn btn-info ml-auto"><i className="fa fa-sort"></i>Responsable</a>
       </div>
      
       <div className="row" >{UsersTaches} </div>

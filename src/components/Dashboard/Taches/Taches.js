@@ -5,6 +5,7 @@ import '../../css/style.css';
 import SideBar from '../SideBar';
 import {Link} from "react-router-dom";
 import Swal from "sweetalert2";
+import {sortBy} from "underscore";
 
 export default function Taches() {
     const [isLoading, setIsLoading] = useState(true);
@@ -135,6 +136,30 @@ export default function Taches() {
       }
     });
   }
+  function Trienom(e){
+    e.preventDefault();
+    setTaches(sortBy(taches, "Nom"));
+}
+function TrieCode(e){
+  e.preventDefault();
+  setTaches(sortBy(taches, "Code"));
+}
+function TrieResponsable(e){
+  e.preventDefault();
+  setTaches(sortBy(taches, "SUPAD"));
+}
+function TrieEtat(e){
+  e.preventDefault();
+setTaches(sortBy(taches, "Etat"));
+}
+function TrieDescription(e){
+  e.preventDefault();
+  setTaches(sortBy(taches, "Description"));
+}
+function TriePoints(e){
+  e.preventDefault();
+  setTaches(sortBy(taches, "Points"));
+}
     return (
 <div>
   <SideBar />
@@ -206,11 +231,12 @@ export default function Taches() {
           </div>
           <input type="text" className="form-control" placeholder="Search here" />
         </div>
-        <a href="#" className="btn btn-info ml-auto"> <i className="fa fa-sort"></i> Nom</a>
-          <a href="#" className="btn btn-info ml-auto"><i className="fa fa-sort"></i> Code</a>
-          <a href="#" className="btn btn-info ml-auto"><i className="fa fa-sort"></i> Description</a>
-          <a href="#" className="btn btn-info ml-auto"><i className="fa fa-sort"></i> Responsable</a>
-          <a href="#" className="btn btn-info ml-auto"><i className="fa fa-sort"></i> Etat</a>
+        <a href="#" className="btn btn-info ml-auto" onClick={Trienom}> <i className="fa fa-sort"></i> Nom</a>
+          <a href="#" className="btn btn-info ml-auto" onClick={TrieCode}><i className="fa fa-sort"></i> Code</a>
+          <a href="#" className="btn btn-info ml-auto" onClick={TrieDescription}><i className="fa fa-sort"></i> Description</a>
+          <a href="#" className="btn btn-info ml-auto" onClick={TriePoints}><i className="fa fa-sort"></i> Points</a>
+          <a href="#" className="btn btn-info ml-auto" onClick={TrieResponsable}><i className="fa fa-sort"></i> Responsable</a>
+          <a href="#" className="btn btn-info ml-auto" onClick={TrieEtat}><i className="fa fa-sort"></i> Etat</a>
         <Link to={`/AjouterTache`} className="btn btn-primary ml-auto">
           <i className="fa fa-plus-circle"></i> Ajouter Tache
         </Link>
