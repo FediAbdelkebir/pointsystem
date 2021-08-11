@@ -47,13 +47,27 @@ const getUserPointsById = (req, res) => {
         }
     })
 }
-const findUser = (req, res) => {
+const getoldpoints = (req, res) => {
+    
     userpoints.find({iduser: req.params.iduser.trim()}, (err, userpoints) => {
         if (err)
             res.status(500).send({error: err})
         else {
             if (userpoints) 
                 res.send(userpoints);
+            else 
+                res.status(404).send({error: "Utilisateur Introuvable !"});
+        }
+    })
+}
+const findUser = (req, res) => {
+    userpoints.find({iduser: req.params.iduser.trim()}, (err, userpoints) => {
+        if (err){
+        res.status(500).send({error: err})}
+  else {
+            if (userpoints) { 
+                console.log("found user")
+            res.send(userpoints);}
             else 
                 res.status(404).send({error: "Utilisateur Introuvable !"});
         }
@@ -75,7 +89,6 @@ const updateUserPoints = (req, res) => {
         if(findErr)
             res.status(500).send({error: findErr});
         else { 
-
             const {points} = req.body;
             console.log("nombre des points :"+points)
             //possibility to check the fields (validation) before saving !!!!!!!!!!!!!!!!!!!!!!
@@ -129,5 +142,6 @@ module.exports = {
     updateUserPoints,
     deleteUserPoints,
     deletePoints,
+    getoldpoints,
     findUser
 }
