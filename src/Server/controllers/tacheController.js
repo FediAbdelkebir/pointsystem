@@ -2,6 +2,7 @@
 
 const Tache = require('../models/Tache');
 const axios = require('axios');
+const {Mail} =require('../Mailer');
 
 const getAllTaches = (req, res) => {
     Tache.find({}, (err, taches) => {
@@ -88,6 +89,8 @@ if(findErr){res.status(500).send({error: findErr});}
             tache.Etat="Validé";
             NewUserPoints=tache.Points;
             tache.save().then(modifiedUser=>{ res.send(modifiedUser)}).catch(modErr=>{ res.send(500).send({error: modErr});})
+            //Sending Mail
+            Mail();
                 //9bal l update nchoufou fama user fi l userpoints wwala le
                 try{axios.get("http://localhost:4000/userpoints/finduser/"+iduser).then(res=>{      
                      existuser=true

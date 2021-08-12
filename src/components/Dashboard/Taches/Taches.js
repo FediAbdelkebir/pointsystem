@@ -6,14 +6,15 @@ import SideBar from '../SideBar';
 import {Link} from "react-router-dom";
 import Swal from "sweetalert2";
 import {sortBy} from "underscore";
-const {Mail} =require('../../../Server/Mailer');
+
+
+
+
 export default function Taches() {
 
     const [isLoading, setIsLoading] = useState(true);
     const [taches,setTaches]=useState([]);
-function Mailer(){
-  Mail();
-}
+
     useEffect(()=>{
         axios.get("http://localhost:4000/taches/")
         .then(res=>{
@@ -293,7 +294,6 @@ function TriePoints(e){
           </div>
         </div>
         <a href="#" className="btn btn-danger ml-auto" onClick={deleteall}><i className="fa fa-trash"></i> Delete Selected items</a>
-        <a href="#" className="btn btn-danger ml-auto" onClick={Mailer}><i className="fa fa-trash"></i> TestEmail</a>
       </div>
       <nav>
         <ul className="pagination pagination-gutter pagination-primary no-bg">
