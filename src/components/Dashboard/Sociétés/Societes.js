@@ -6,11 +6,33 @@ import SideBar from '../SideBar';
 import {Link} from "react-router-dom";
 import Swal from "sweetalert2";
 import {sortBy} from "underscore";
+import $ from 'jquery';
+
 
 export default function Societes() {
     const [isLoading, setIsLoading] = useState(true);
     const [societes,setSocietes]=useState([]);
-    
+
+    const handleChange = (e) => {
+        var keyword = document.getElementById("ValeurRechercheSocietes").value;
+        if (keyword.length<1){
+          console.log("Fergha");
+          axios.get("http://localhost:4000/societes/")
+        .then(res=>{
+            setSocietes(res.data);
+            setIsLoading(false);
+        })
+        .catch(err=>console.log)
+        }else{
+        var filtered_societes = societes;
+
+          filtered_societes=societes.filter(societe=>societe.Nom.toLowerCase().includes(keyword.toLowerCase()));
+          setSocietes(filtered_societes);
+        }
+        
+  }
+
+
     const deletesociete = (id) => {
       Swal.fire({
         title: "Vous etez sur?",
@@ -64,6 +86,7 @@ export default function Societes() {
         })
         .catch(err=>console.log)
     }, []);
+
 function Trienom(e){
     e.preventDefault();
   setSocietes(sortBy(societes, "Nom"));
@@ -76,11 +99,12 @@ function TrieResponsable(e){
     e.preventDefault();
   setSocietes(sortBy(societes, "SUPAD"));
 }
+
     const content = isLoading ? <h3>Loading Societes...</h3> : societes.length ? (
         societes
         .map(societe=>{
             return(
-                    <tr key={societe._id}>
+                    <tr key={societe._id} id="RechercheSocietes">
                 <td>
                   <div className="custom-control custom-checkbox checkbox-success check-lg mr-3" name={societe._id}>
                     <input
@@ -174,7 +198,7 @@ function TrieResponsable(e){
               <i className="flaticon-381-search-2"></i>
             </span>
           </div>
-          <input type="text" className="form-control" placeholder="Search here" />&nbsp;
+          <input type="text" className="form-control" placeholder="Search here" id="ValeurRechercheSocietes" onChange={handleChange}/>&nbsp;
 
         </div>
         
