@@ -25,6 +25,24 @@ export default function Taches() {
         .catch(err=>console.log)
     }, []);
 
+    const handleChange = (e) => {
+      var keyword = document.getElementById("ValeurRechercheTaches").value;
+      if (keyword.length<1){
+        console.log("Fergha");
+        axios.get("http://localhost:4000/taches/")
+      .then(res=>{
+          setTaches(res.data);
+          setIsLoading(false);
+      })
+      .catch(err=>console.log)
+      }else{
+      var filtered_taches = taches;
+
+        filtered_taches=taches.filter(tache=>tache.Nom.toLowerCase().includes(keyword.toLowerCase()));
+        setTaches(filtered_taches);
+      }
+      
+}
     const content = isLoading ? <h3>Loading Taches...</h3> : taches.length ? (
       taches
       .map(tache=>{
@@ -233,7 +251,7 @@ function TriePoints(e){
               <i className="flaticon-381-search-2"></i>
             </span>
           </div>
-          <input type="text" className="form-control" placeholder="Search here" />
+          <input type="text" className="form-control" placeholder="Rechercher.." id="ValeurRechercheTaches" onChange={handleChange}/>
         </div>
         <a href="#" className="btn btn-info ml-auto" onClick={Trienom}> <i className="fa fa-sort"></i> Nom</a>
           <a href="#" className="btn btn-info ml-auto" onClick={TrieCode}><i className="fa fa-sort"></i> Code</a>

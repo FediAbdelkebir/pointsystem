@@ -19,8 +19,17 @@ export default function AjouterTache({history}) {
           [e.target.id]: e.target.value,
         });
       };
-    
+    function Verif(){
+      if ((document.getElementById("NomTache").value=="")||(document.getElementById("CodeTache").value=="")||
+      (document.getElementById("DescriptionTache").value=="")||(document.getElementById("PointsTache").value=="")){
+        return false;
+      }else{
+        return true;
+      }
+
+    };
       const handleClick = (e) => {
+        if (Verif()){
         Swal.fire({
           title: "Vous etez sur?",
           text: "Veuillez Vérifier vos besoin avant de envoyé ",
@@ -62,7 +71,11 @@ export default function AjouterTache({history}) {
             Swal.fire("Annulé", "Vous Avez Annulé l'ajout d'une tache.", "error");
           }
         });
+      }else{
+        Swal.fire("Erreur", "Veuillez remplire tous les champs", "error");
+      }
       };
+
     return (
 <div Style="font-family: 'poppins', sans-serif;">
   <SideBar />
