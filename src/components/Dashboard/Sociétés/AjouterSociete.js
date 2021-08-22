@@ -19,8 +19,16 @@ export default function AjouterSociete() {
       [e.target.id]: e.target.value,
     });
   };
-
+function Verif(){
+  if((document.getElementById("NomSociete").value=="")||(document.getElementById("CodeSociete").value="")||(document.getElementById("SUPAD").value=="")){
+return false
+  }
+  else{
+    return true
+  }     
+}
   const handleClick = (e) => {
+    if(Verif()){
     Swal.fire({
       title: "Vous etez sur?",
       text: "Veuillez Vérifier vos besoin avant de envoyé ",
@@ -56,6 +64,9 @@ export default function AjouterSociete() {
         Swal.fire("Annulé", "Vous Avez Annulé l'ajout d'une societe.", "error");
       }
     });
+  }else{
+    Swal.fire("Erreur", "Veuillez remplire tous les champs .", "error");
+  }
   };
   
   return (

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from "axios";
 import '../../vendor/bootstrap-select/dist/css/bootstrap-select.min.css';
 import '../../css/style.css';
+import '../../css/Card.css';
 import SideBar from '../SideBar';
 import Swal from "sweetalert2";
 
@@ -30,7 +31,23 @@ export default function AjouterTache() {
         })
         .catch(err=>console.log)
     }, []);
-
+    const handleChange = (e) => {
+      var keyword = document.getElementById("ValeurRechercheAffecter").value;
+      if (keyword.length<1){
+        console.log("Fergha");
+        axios.get("http://localhost:4000/users/")
+      .then(res=>{
+        setUsers(res.data);
+          setIsLoading(false);
+      })
+      .catch(err=>console.log)
+      }else{
+      var filtered_users = users;
+        filtered_users=users.filter(user=>user.name.toLowerCase().includes(keyword.toLowerCase()));
+        setUsers(filtered_users);
+      }
+      
+}
 function handleajout(idtache,iduser){
     Swal.fire({
         title: "Vous etez sur?",
@@ -112,6 +129,7 @@ Swal.fire({
         showDenyButton: true,
         confirmButtonText: `Ajouter`,
         denyButtonText: `Non`,
+        position:'top-start',
         inputValidator: function (value) {
           idtache=value;
         }
@@ -120,7 +138,8 @@ Swal.fire({
           handleajout(idtache,iduser);
         } else {
 
-          Swal.fire("Annulé", "Vous Avez Annulé ", "error");
+          Swal.fire({title:"Vous Avez Annuler L'affectation d'une tache",
+          position:'bottom-end'});
         }
       });
 }
@@ -149,6 +168,7 @@ if (UT.length>0){
             inputOptions: {ValueList},
             inputPlaceholder: 'Selectioner une tache a supprimer',
             showDenyButton: true,
+            position:'top-start',
             confirmButtonText: `Supprimer`,
             denyButtonText: `Non`,
             inputValidator: (value) => {
@@ -158,7 +178,8 @@ if (UT.length>0){
             if (result.isConfirmed) {
               handledelete(idtache,iduser);
             }else{
-                Swal.fire("Vous Avez Annuler");
+              Swal.fire({title:"Vous Avez Annuler la Supprision",
+              position:'bottom-end'});
             }
           });
     }
@@ -211,6 +232,7 @@ if (UT.length>0){
         Swal.fire({
                 title: 'Valider Une Tache',
                 input: 'select',
+                position:'top-start',
                 inputOptions: {ValueList},
                 inputPlaceholder: 'Selectioner une tache a Valider',
                 showDenyButton: true,
@@ -223,7 +245,8 @@ if (UT.length>0){
                 if (result.isConfirmed) {
                   handleValider(idtache,iduser);
                 }else{
-                    Swal.fire("Vous Avez Annuler la Validation");
+                    Swal.fire({title:"Vous Avez Annuler la Validation",
+                    position:'bottom-end'});
                 }
               });
         }
@@ -234,18 +257,23 @@ if (UT.length>0){
       ) : users.length ? (
         users.map((user) => {
           return (
-            <div className="card col-3" key={user._id}>
-                <div className="card-body text-center ai-icon text-primary">
-                <img src="https://cdn.discordapp.com/attachments/475963741616472074/872798593101225984/IMG_20210617_021024_482.jpg"/>
-                    <h4 className="my-2">{user.Nom}</h4>
-                    
-                    <a href="javascript:void(0);" className="btn btn-rounded  my-1 btn-sm btn-danger px-4" onClick={(e) =>Supprimer(user._id)}>Supprimer <span className="btn-icon-left text-danger"><i className="fa fa-minus-square"></i></span>
-                    </a>&nbsp;
-                    <a href="javascript:void(0);" className="btn btn-rounded  my-1 btn-sm btn-info px-4" onClick={(e) =>Ajouter(user._id)}>Ajouter <span className="btn-icon-left text-info"><i className="fa fa-plus-square"></i></span></a>&nbsp;
-                    <a href="javascript:void(0);" className="btn btn-rounded  my-1 btn-sm btn-success px-4" onClick={(e) =>Valider(user._id)}>Valider <span className="btn-icon-left text-success"><i className="fa fa-check"></i></span></a>&nbsp;
-                </div>
-                
-            </div>
+
+            
+    <div className="main-container">
+      <div className="poster-container">
+        <a href="#"><img src="https://cdn.discordapp.com/attachments/475963741616472074/859136696129683456/IMG_20210617_021024_482.jpg" className="poster"/></a>
+      </div>
+      <div className="ticket-container">
+        <div className="ticket__content">
+          <h4 className="ticket__movie-title">{user.name}</h4>
+          <p className="ticket__movie-title">{user.email} <p className="ticket__current-price">{user.name}<br/></p></p>
+          <button className="ticket__buy-btn  my-1 btn-sm btn-success px-4" onClick={(e) =>Valider(user._id)}><a href="javascript:void(0);">Valider <span className="btn-icon-left text-success"><i className="fa fa-check"></i></span></a>&nbsp;</button> 
+           <button className="ticket__buy-btn my-1 btn-sm btn-info px-4" onClick={(e) =>Ajouter(user._id)}><a href="javascript:void(0);"  >Ajouter <span className="btn-icon-left text-info"><i className="fa fa-plus-square"></i></span></a>&nbsp;</button> 
+           <button className="ticket__buy-btn my-1 btn-sm btn-danger px-4" onClick={(e) =>Supprimer(user._id)}><a href="javascript:void(0);" >Supprimer <span className="btn-icon-left text-danger"><i className="fa fa-minus-square"></i></span></a>&nbsp;</button>
+        </div>
+      </div>
+    </div>
+    
 
           );
         })
@@ -271,12 +299,12 @@ if (UT.length>0){
               <i className="flaticon-381-search-2"></i>
             </span>
           </div>
-          <input type="text" className="form-control" placeholder="Search here" />&nbsp;
+          <input type="text" className="form-control" placeholder="Rechercher un utilisateur.." id="ValeurRechercheAffecter" onChange={handleChange}/>&nbsp;
 
         </div>
       </div>
      
-      <div className="row" >{UsersTaches} </div>
+      <div className="row" ><div className="hero-container">{UsersTaches} </div></div>
           </div>
         </div>
       </div>
