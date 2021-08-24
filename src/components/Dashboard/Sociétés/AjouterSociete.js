@@ -13,6 +13,25 @@ export default function AjouterSociete() {
     Code: "",
     SUPAD: "",
   });
+  const [users,setUsers]=useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  useEffect(()=>{
+    axios.get("http://localhost:4000/users")
+    .then(res=>{
+        setUsers(res.data);
+        setIsLoading(false);
+    })
+    .catch(err=>console.log)
+}, []);
+
+   const SelectList = isLoading ? <option>Chargements des utilisateurs ...</option> : users.length ? (
+    users
+        .map(user=>{
+            return(
+              <option selected>{user.name}</option>
+            )
+        })
+    ): <h3>Empty List !</h3>;
   const handleChange = (e) => {
     setSociete({
       societe,
@@ -20,7 +39,7 @@ export default function AjouterSociete() {
     });
   };
 function Verif(){
-  if((document.getElementById("NomSociete").value=="")||(document.getElementById("CodeSociete").value="")||(document.getElementById("SUPAD").value=="")){
+  if((document.getElementById("NomSociete").value=="")||(document.getElementById("CodeSociete").value=="")||(document.getElementById("SUPAD").value=="")){
 return false
   }
   else{
@@ -106,18 +125,18 @@ return false
                       name={"CodeSociete"}
                     />
                   </div>
-                  <div className="form-group col-md-3">
-                    <label>Super Admin</label>
-                    <input
-                      type="text"
-                      className="form-control"
-                      placeholder="SuperAdmin"
-                      type="text"
-                      id={"SUPAD"}
-                      name={"SUPAD"}
-                    />
-                  </div>
+                  
+                  
+                  <div className="form-group col-md-5">
+              <label>Super Admin</label><br></br>
+              <select class="dropdown bootstrap-select show-tick form-control col-md-5 " id={"SUPAD"}
+                      name={"SUPAD"}>
+              {SelectList}
+</select>
+            </div> 
+                  
                 </div>
+                
               </form>
               <button className="btn btn-primary" onClick={handleClick}>
               <i className="fa fa-plus-square"></i> Ajouter Societe
