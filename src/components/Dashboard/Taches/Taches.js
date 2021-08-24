@@ -6,24 +6,30 @@ import SideBar from '../SideBar';
 import {Link} from "react-router-dom";
 import Swal from "sweetalert2";
 import {sortBy} from "underscore";
-
-
-
-
+import {countBy} from "underscore";
 export default function Taches() {
 
     const [isLoading, setIsLoading] = useState(true);
     const [taches,setTaches]=useState([]);
-
+    const [counttaches,setCountTaches]=useState([]);
+    
     useEffect(()=>{
-        axios.get("http://localhost:4000/taches/")
-        .then(res=>{
-            console.log(res);
-            setTaches(res.data);
-            setIsLoading(false);
-        })
-        .catch(err=>console.log)
-    }, []);
+      axios.get("http://localhost:4000/taches/tache/count")
+      .then(res=>{
+        setCountTaches(res.data);
+          setIsLoading(false);
+      })
+      .catch(err=>console.log)
+  }, []);
+
+  useEffect(()=>{
+    axios.get("http://localhost:4000/taches/")
+    .then(res=>{
+      setTaches(res.data);
+        setIsLoading(false);
+    })
+    .catch(err=>console.log)
+}, []);
 
     const handleChange = (e) => {
       var keyword = document.getElementById("ValeurRechercheTaches").value;
@@ -133,7 +139,7 @@ export default function Taches() {
       }
     });
   };
-   
+  
   const deleteall = (id) => {
     Swal.fire({
       title: "Vous etez sur?",
@@ -198,8 +204,8 @@ function TriePoints(e){
       <div className="col-xl-3 col-lg-6 col-sm-6">
 						<div className="widget-stat card">
 							<div className="card-body p-4">
-								<h4 className="card-title">Total Students</h4>
-								<h3>3280</h3>
+								<h4 className="card-title">Total Taches</h4>
+								<h3>{taches.length}</h3>
 								<div className="progress mb-2">
 									<div className="progress-bar progress-animated bg-primary" style={{width: "80%"}}></div>
 								</div>
@@ -223,7 +229,7 @@ function TriePoints(e){
 						<div className="widget-stat card">
 							<div className="card-body p-4">
 								<h4 className="card-title">Taches Completes</h4>
-								<h3>500</h3>
+								<h3></h3>
 								<div className="progress mb-2">
 									<div className="progress-bar progress-animated bg-red" style={{width: "76%"}}></div>
 								</div>
@@ -235,7 +241,7 @@ function TriePoints(e){
 						<div className="widget-stat card">
 							<div className="card-body p-4">
 								<h4 className="card-title">Taches En Cours</h4>
-								<h3>280</h3>
+								<h3></h3>
 								<div className="progress mb-2">
 									<div className="progress-bar progress-animated bg-success" style={{Width: "60%"}}></div>
 								</div>

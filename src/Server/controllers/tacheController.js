@@ -18,7 +18,9 @@ const getAllTaches = (req, res) => {
                 res.sendStatus(204)
         }
     })
+    
 }
+
 
 const getTacheById = (req, res) => {
     Tache.find({_id: req.params.id.trim()}, (err, tache) => {

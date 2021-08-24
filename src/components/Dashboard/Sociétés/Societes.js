@@ -31,7 +31,7 @@ export default function Societes() {
         }
         
   }
-
+  
 
     const deletesociete = (id) => {
       Swal.fire({
@@ -170,7 +170,7 @@ function TrieResponsable(e){
 						<div className="widget-stat card">
 							<div className="card-body p-4">
 								<h4 className="card-title">Total Societes</h4>
-								<h3>3280</h3>
+								<h3>{societes.length}</h3>
 								<div className="progress mb-2">
 									<div className="progress-bar progress-animated bg-primary" Style="width: 80%"></div>
 								</div>
