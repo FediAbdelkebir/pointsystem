@@ -19,6 +19,25 @@ export default function AjouterTache({history}) {
           [e.target.id]: e.target.value,
         });
       };
+      const [users,setUsers]=useState([]);
+      const [isLoading, setIsLoading] = useState(true);
+  useEffect(()=>{
+    axios.get("http://localhost:4000/users")
+    .then(res=>{
+        setUsers(res.data);
+        setIsLoading(false);
+    })
+    .catch(err=>console.log)
+}, []);
+
+const SelectList = isLoading ? <option>Chargements des utilisateurs ...</option> : users.length ? (
+  users
+      .map(user=>{
+          return(
+            <option selected>{user.name}</option>
+          )
+      })
+  ): <h3>Aucun Utilisateur Trouvé !</h3>;
     function Verif(){
       if ((document.getElementById("NomTache").value=="")||(document.getElementById("CodeTache").value=="")||
       (document.getElementById("DescriptionTache").value=="")||(document.getElementById("PointsTache").value=="")){
@@ -45,7 +64,7 @@ export default function AjouterTache({history}) {
             tache.Description = document.getElementById("DescriptionTache").value;
             tache.Etat = "En Cours";
             tache.Points = document.getElementById("PointsTache").value;
-            tache.Responsable = "TestingTaches";
+            tache.Responsable = document.getElementById("ResponsableTache").value;;
             console.log({ tache });
     
             e.preventDefault();
@@ -116,18 +135,13 @@ export default function AjouterTache({history}) {
                                              placeholder="Nombre de points"
                                             />
                                             </div>
-                                            <div class="form-group col-md-4">
-                                                
-                                                <label>Responsable</label>
-                                                <div class="form-group col-md-6">
-                                                <div class="dropdown bootstrap-select form-control dropup"><select id="inputState" class="form-control" tabindex="-98">
-                                                    <option selected="">Choose...</option>
-                                                    <option>Option 1</option>
-                                                    <option>Option 2</option>
-                                                    <option>Option 3</option>
-                                                </select><button type="button" class="btn dropdown-toggle btn-light" data-toggle="dropdown" role="button" data-id="inputState" title="Choose..." aria-expanded="false"><div class="filter-option"><div class="filter-option-inner"><div class="filter-option-inner-inner">Choose...</div></div> </div></button><div class="dropdown-menu" role="combobox" Style="max-height: 411px; overflow: hidden; min-height: 112px; position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, -2px, 0px);" x-placement="top-start"><div class="inner show" role="listbox" aria-expanded="false" tabindex="-1" Style="max-height: 395px; overflow-y: auto; min-height: 96px;"><ul class="dropdown-menu inner show"><li class="selected active"><a role="option" class="dropdown-item selected active" aria-disabled="false" tabindex="0" aria-selected="true"><span class=" bs-ok-default check-mark"></span><span class="text">Choose...</span></a></li><li><a role="option" class="dropdown-item" aria-disabled="false" tabindex="0" aria-selected="false"><span class=" bs-ok-default check-mark"></span><span class="text">Option 1</span></a></li><li><a role="option" class="dropdown-item" aria-disabled="false" tabindex="0" aria-selected="false"><span class=" bs-ok-default check-mark"></span><span class="text">Option 2</span></a></li><li><a role="option" class="dropdown-item" aria-disabled="false" tabindex="0" aria-selected="false"><span class=" bs-ok-default check-mark"></span><span class="text">Option 3</span></a></li></ul></div></div></div>
-                                            </div>
-                                            </div>
+                                            <div className="form-group col-md-5">
+              <label>Responsable </label><br></br>
+              <select class="dropdown bootstrap-select show-tick form-control col-md-5 " id={"ResponsableTache"}
+                      name={"ResponsableTache"}>
+              {SelectList}
+</select>
+            </div>
                                             
                                             
                                             <div class="form-group col-md-9" >

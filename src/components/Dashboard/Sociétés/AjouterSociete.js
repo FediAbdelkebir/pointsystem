@@ -31,7 +31,7 @@ export default function AjouterSociete() {
               <option selected>{user.name}</option>
             )
         })
-    ): <h3>Empty List !</h3>;
+    ): <h3>Aucun Utilisateur Trouvé !</h3>;
   const handleChange = (e) => {
     setSociete({
       societe,
