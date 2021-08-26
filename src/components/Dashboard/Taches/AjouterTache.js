@@ -47,6 +47,14 @@ const SelectList = isLoading ? <option>Chargements des utilisateurs ...</option>
       }
 
     };
+    function GenerateCode(e){
+e.preventDefault();
+      var uuid = require("uuid");
+var id = uuid.v4();
+document.getElementById("CodeTache").value=id;
+document.getElementById("Placeholder").value=id;
+console.log(id)
+    }
       const handleClick = (e) => {
         if (Verif()){
         Swal.fire({
@@ -119,13 +127,11 @@ const SelectList = isLoading ? <option>Chargements des utilisateurs ...</option>
                                                                       name={"NomTache"}
                                                 />
                                             </div>
-                                            <div class="form-group col-md-2">
-                                            <label>Code Tache </label>
-                                            <input type="text" class="form-control"
-                                             id={"CodeTache"}
-                                             name={"CodeTache"}
-                                             placeholder="Code Tache"
-                                            />
+                                            
+                                            <div class="form-group col-md-3">
+                                            <label>Code Tache</label>
+                                            <button className="btn btn-primary form-control" onClick={GenerateCode} id={"CodeTache"} name={"CodeTache"} ><i className="fa fa-plus-square"></i> GenerateCode </button>
+                                            <input type="text" class="form-control" id={"Placeholder"}readOnly="true"/>
                                             </div>
                                             <div class="form-group col-md-2">
                                             <label>Nombre de Points </label>
@@ -166,10 +172,12 @@ const SelectList = isLoading ? <option>Chargements des utilisateurs ...</option>
                                         
                                     </form>
                                     <button className="btn btn-primary" onClick={handleClick}><i className="fa fa-plus-square"></i> Ajouter Tache</button>
+                                    
                                 </div>
                             </div>
     </div>
   </div>
+ 
 </div>
 
       
