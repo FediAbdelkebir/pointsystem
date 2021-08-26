@@ -46,6 +46,15 @@ return false
     return true
   }     
 }
+function GenerateCode(e){
+  e.preventDefault();
+        var uuid = require("uuid");
+  var id = uuid.v4();
+  document.getElementById("CodeSociete").value=id;
+  document.getElementById("PlaceholderSocieteCode").value=id;
+  console.log(id)
+      }
+
   const handleClick = (e) => {
     if(Verif()){
     Swal.fire({
@@ -115,16 +124,12 @@ return false
                       name={"NomSociete"}
                     />
                   </div>
-                  <div className="form-group col-md-2">
-                    <label>Code Societe </label>
-                    <input
-                      type="text"
-                      className="form-control"
-                      type="text"
-                      id={"CodeSociete"}
-                      name={"CodeSociete"}
-                    />
-                  </div>
+                  
+                  <div class="form-group col-md-3">
+                                            <label>Code Societe</label>
+                                            <button className="btn btn-primary form-control" onClick={GenerateCode} id={"CodeSociete"} name={"CodeSociete"} ><i className="fa fa-plus-square"></i> GenerateCode </button>
+                                            <input type="text" class="form-control" id={"PlaceholderSocieteCode"}readOnly="true"/>
+                                            </div>
                   
                   
                   <div className="form-group col-md-5">
