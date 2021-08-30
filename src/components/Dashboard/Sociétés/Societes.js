@@ -17,8 +17,7 @@ export default function Societes() {
         var keyword = document.getElementById("ValeurRechercheSocietes").value;
         if (keyword.length<1){
           console.log("Fergha");
-          axios.get("https://siv-pointssystem.herokuapp.com:4000/societes/")
-          //axios.get("http://localhost:4000/societes/")
+          axios.get("http://localhost:4000/societes/")
         .then(res=>{
             setSocietes(res.data);
             setIsLoading(false);
@@ -80,8 +79,7 @@ export default function Societes() {
     }
 
     useEffect(()=>{
-      axios.get("https://siv-pointssystem.herokuapp.com:4000/societes/")
-        //axios.get("http://localhost:4000/societes/")
+        axios.get("http://localhost:4000/societes/")
         .then(res=>{
             setSocietes(res.data);
             setIsLoading(false);
