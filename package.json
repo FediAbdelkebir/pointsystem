@@ -23,7 +23,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "heroku-postbuild": "cd src && cd Server && npm install && npm start",
+    "heroku-postbuild": "npm install && npm start && cd src && cd Server && npm install && npm start",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
