@@ -1,1 +1,0 @@
-server:cd cd/Server && npm i && npm start
