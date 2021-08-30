@@ -6,8 +6,8 @@ const cors = require("cors");
 require("./DB/db");
 
 //required routes
-const userRoutes = require("./routes/userRoutes");
-const tacheRoutes = require("./routes/tacheRoutes");
+const userRoutes = require("./routes/UserRoutes");
+const tacheRoutes = require("./routes/TacheRoutes");
 const societeRoutes = require("./routes/SocietesRoutes");
 const usertachesRoutes = require("./routes/UserTachesRoutes");
 const userpointsRoutes = require("./routes/UserPointsRoutes");
