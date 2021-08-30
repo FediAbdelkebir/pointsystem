@@ -22,7 +22,8 @@ export default function AjouterTache({history}) {
       const [users,setUsers]=useState([]);
       const [isLoading, setIsLoading] = useState(true);
   useEffect(()=>{
-    axios.get("http://localhost:4000/users")
+    //axios.get("http://localhost:4000/users")
+    axios.get("http://143.110.210.169:4000/users")
     .then(res=>{
         setUsers(res.data);
         setIsLoading(false);
@@ -77,7 +78,8 @@ console.log(id)
     
             e.preventDefault();
             axios
-              .post("http://localhost:4000/taches/createtache", {
+              //.post("http://localhost:4000/taches/createtache", {
+                .post("http://143.110.210.169:4000/taches/createtache", {
                 Nom: tache.Nom,
                 Code: tache.Code,
                 Description: tache.Description,

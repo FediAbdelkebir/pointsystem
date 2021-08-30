@@ -14,7 +14,9 @@ export default function AjouterTache() {
     const [UT,setUT]=useState([]);
 
     useEffect(()=>{
-        axios.get("http://localhost:4000/taches/")
+      
+        //axios.get("http://localhost:4000/taches/")
+        axios.get("http://143.110.210.169:4000/taches/")
         .then(res=>{
             console.log(res);
             setTaches(res.data);
@@ -24,7 +26,8 @@ export default function AjouterTache() {
     }, []);
 
     useEffect(()=>{
-        axios.get("http://localhost:4000/users")
+        //axios.get("http://localhost:4000/users")
+        axios.get("http://143.110.210.169:4000/users")
         .then(res=>{
             setUsers(res.data);
             setIsLoading(false);
@@ -35,7 +38,8 @@ export default function AjouterTache() {
       var keyword = document.getElementById("ValeurRechercheAffecter").value;
       if (keyword.length<1){
         console.log("Fergha");
-        axios.get("http://localhost:4000/users/")
+        //axios.get("http://localhost:4000/users/")
+        axios.get("http://143.110.210.169:4000/users")
       .then(res=>{
         setUsers(res.data);
           setIsLoading(false);
@@ -61,7 +65,8 @@ function handleajout(idtache,iduser){
           Swal.fire("Success", "Votre tache a été créé :) ", "success");
           console.log(idtache,iduser);
           axios
-            .post("http://localhost:4000/usertaches/createusertaches", {
+            .post("http://143.110.210.169:4000/usertaches/createusertaches", {
+              //.post("http://localhost:4000/usertaches/createusertaches", {
               idtache: idtache,
               iduser: iduser,
             })
@@ -90,7 +95,8 @@ function handledelete(idtache,iduser){
         
         console.log(idtache,iduser);
         axios
-          .delete("http://localhost:4000/usertaches/deleteusertaches/"+idtache+"/"+iduser)
+          //.delete("http://localhost:4000/usertaches/deleteusertaches/"+idtache+"/"+iduser)
+          .delete("http://143.110.210.169:4000/usertaches/deleteusertaches/"+idtache+"/"+iduser)
           .then((res) => {
             Swal.fire("Success", "Vous avez supprimer cette tache :) ", "success");
             console.log(res.data);
@@ -113,7 +119,8 @@ const ValueList=taches.reduce((a, c) => {
   a[c._id] = c.Nom
   return a
  }, {});
-    axios.get("http://localhost:4000/usertaches/"+iduser)
+    //axios.get("http://localhost:4000/usertaches/"+iduser)
+    axios.get("http://143.110.210.169:4000/usertaches/"+iduser)
         .then(res=>{
             console.log(res);
             setUserTaches(res.data);
@@ -146,7 +153,8 @@ Swal.fire({
 function Supprimer(iduser){
   let idtache="";
   let ValueList="";
-    axios.get("http://localhost:4000/usertaches/listtaches/"+iduser)
+    //axios.get("http://localhost:4000/usertaches/listtaches/"+iduser)
+    axios.get("http://143.110.210.169:4000/usertaches/listtaches/"+iduser)
     .then(res=>{
         setUT(res.data);
         setIsLoading(false);
@@ -196,7 +204,8 @@ if (UT.length>0){
           if (result.isConfirmed) {
             console.log(idtache);
             axios
-              .put("http://localhost:4000/taches/ValiderTache/"+idtache,{iduser:iduser})
+              //.put("http://localhost:4000/taches/ValiderTache/"+idtache,{iduser:iduser})
+              .put("http://143.110.210.169:4000/taches/ValiderTache/"+idtache,{iduser:iduser})
               .then((res) => {
                 Swal.fire("Success", "Vous avez valider cette tache :) ", "success");
                 console.log(res.data);
@@ -213,7 +222,8 @@ if (UT.length>0){
     function Valider(iduser){
       let idtache="";
       let ValueList="";
-        axios.get("http://localhost:4000/usertaches/listtaches/"+iduser)
+       // axios.get("http://localhost:4000/usertaches/listtaches/"+iduser)
+        axios.get("http://143.110.210.169:4000/usertaches/listtaches/"+iduser)
         .then(res=>{
             setUT(res.data);
             setIsLoading(false);

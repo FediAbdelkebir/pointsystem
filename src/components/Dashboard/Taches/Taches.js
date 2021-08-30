@@ -14,7 +14,9 @@ export default function Taches() {
     const [counttaches,setCountTaches]=useState([]);
     
     useEffect(()=>{
-      axios.get("http://localhost:4000/taches/tache/count")
+      
+      //axios.get("http://localhost:4000/taches/tache/count")
+      axios.get("http://143.110.210.169:4000/taches/tache/count")
       .then(res=>{
         setCountTaches(res.data);
           setIsLoading(false);
@@ -23,7 +25,8 @@ export default function Taches() {
   }, []);
 
   useEffect(()=>{
-    axios.get("http://localhost:4000/taches/")
+    //axios.get("http://localhost:4000/taches/")
+    axios.get("http://143.110.210.169:4000/taches/")
     .then(res=>{
       setTaches(res.data);
         setIsLoading(false);
@@ -35,7 +38,8 @@ export default function Taches() {
       var keyword = document.getElementById("ValeurRechercheTaches").value;
       if (keyword.length<1){
         console.log("Fergha");
-        axios.get("http://localhost:4000/taches/")
+        //axios.get("http://localhost:4000/taches/")
+        axios.get("http://143.110.210.169:4000/taches/")
       .then(res=>{
           setTaches(res.data);
           setIsLoading(false);
@@ -124,7 +128,8 @@ export default function Taches() {
       denyButtonText: `Non, Annuler`,
     }).then((result) => {
       if (result.isConfirmed) {
-        axios.delete("http://localhost:4000/taches/deletetache/"+id);
+        //axios.delete("http://localhost:4000/taches/deletetache/"+id);
+        axios.delete("http://143.110.210.169:4000/taches/deletetache/"+id);
         Swal.fire("Success", "Tache Supprimé :) ", "success");
         let newList = taches.filter(tache=>{
             return tache._id !== id;
@@ -150,7 +155,8 @@ export default function Taches() {
       denyButtonText: `Non, Annuler`,
     }).then((result) => {
       if (result.isConfirmed) {
-        axios.delete("http://localhost:4000/taches/deletetaches/:id",{
+        //axios.delete("http://localhost:4000/taches/deletetaches/:id",{
+          axios.delete("http://143.110.210.169:4000/taches/deletetaches/:id",{
       params: {
         id: id
       }});

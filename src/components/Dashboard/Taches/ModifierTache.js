@@ -46,7 +46,9 @@ export default function ModifierTache(props) {
         console.log({ Nouveautache });
 
         e.preventDefault();
-        axios.put(`http://localhost:4000/taches/updatetache/${id}`, {
+        
+        //axios.put(`http://localhost:4000/taches/updatetache/${id}`, {
+          axios.put(`http://143.110.210.169:4000/taches/updatetache/${id}`, {
             Nom: document.getElementById("NouveauNomTache").value,
             Code: document.getElementById("NouveauCodeTache").value,
             Description: document.getElementById("NouveauDescriptionTache").value,
@@ -72,7 +74,8 @@ export default function ModifierTache(props) {
   };
   useEffect(() => {
     axios
-      .get(`http://localhost:4000/taches/tache/${id}`)
+      //.get(`http://localhost:4000/taches/tache/${id}`)
+      .get(`http://143.110.210.169:4000/taches/tache/${id}`)
       .then((res) => {
         setTaches(res.data);
         setIsLoading(false);

@@ -40,8 +40,10 @@ const [societes,setSocietes]=useState([]);
       if (result.isConfirmed) {
         Swal.fire("Success", "Votre Societe a été modifié :) ", "success");
         e.preventDefault();
+        
         axios
-          .put("http://localhost:4000/societes/UpdateSociete/"+props.id, {
+          //.put("http://localhost:4000/societes/UpdateSociete/"+props.id, {
+            .put("http://143.110.210.169:4000/societes/UpdateSociete/"+props.id, {
             Nom: societe.Nom,
             Code: societe.Code,
             SUPAD: societe.SUPAD,
@@ -62,7 +64,8 @@ const [societes,setSocietes]=useState([]);
 
 
     useEffect(()=>{
-        axios.get("http://localhost:4000/societes/"+props.id)
+        //axios.get("http://localhost:4000/societes/"+props.id)
+        axios.get("http://143.110.210.169:4000/societes/"+props.id)
         .then(res=>{
             setSocietes(res.data);
             setIsLoading(false);

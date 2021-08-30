@@ -16,7 +16,8 @@ export default function AjouterSociete() {
   const [users,setUsers]=useState([]);
   const [isLoading, setIsLoading] = useState(true);
   useEffect(()=>{
-    axios.get("http://localhost:4000/users")
+    //axios.get("http://localhost:4000/users")
+    axios.get("http://143.110.210.169:4000/users")
     .then(res=>{
         setUsers(res.data);
         setIsLoading(false);
@@ -74,7 +75,8 @@ function GenerateCode(e){
 
         e.preventDefault();
         axios
-          .post("http://localhost:4000/societes/create", {
+          //.post("http://localhost:4000/societes/create", {
+            .post("http://143.110.210.169:4000/societes/create", {
             Nom: societe.Nom,
             Code: societe.Code,
             SUPAD: societe.SUPAD,

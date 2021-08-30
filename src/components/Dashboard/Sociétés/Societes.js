@@ -17,7 +17,8 @@ export default function Societes() {
         var keyword = document.getElementById("ValeurRechercheSocietes").value;
         if (keyword.length<1){
           console.log("Fergha");
-          axios.get("http://localhost:4000/societes/")
+          axios.get("http://143.110.210.169:4000/societes/")
+          //axios.get("http://localhost:4000/societes/")
         .then(res=>{
             setSocietes(res.data);
             setIsLoading(false);
@@ -43,7 +44,8 @@ export default function Societes() {
         denyButtonText: `Non, Annuler`,
       }).then((result) => {
         if (result.isConfirmed) {
-          axios.delete("http://localhost:4000/societes/"+id);
+          axios.delete("http://143.110.210.169:4000/societes/"+id);
+         // axios.delete("http://localhost:4000/societes/"+id);
           Swal.fire("Success", "Votre tache a été Modifié :) ", "success");
         } else {
           Swal.fire(
@@ -66,7 +68,8 @@ export default function Societes() {
         denyButtonText: `Non, Annuler`,
       }).then((result) => {
         if (result.isConfirmed) {
-          axios.delete("http://localhost:4000/societes/"+id);
+          axios.delete("http://143.110.210.169:4000/societes/"+id);
+          //axios.delete("http://localhost:4000/societes/"+id);
           Swal.fire("Success", "societes Supprimé :) ", "success");
         } else {
           Swal.fire(
@@ -79,7 +82,8 @@ export default function Societes() {
     }
 
     useEffect(()=>{
-        axios.get("http://localhost:4000/societes/")
+      axios.get("http://143.110.210.169:4000/societes/")
+        //axios.get("http://localhost:4000/societes/")
         .then(res=>{
             setSocietes(res.data);
             setIsLoading(false);
