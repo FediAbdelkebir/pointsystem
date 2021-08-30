@@ -1,5 +1,5 @@
 //methds must be optimized
-const usertaches = require("../models/usertaches");
+const usertaches = require("../models/Usertaches");
 
 const getAllUserTaches = (req, res) => {
     usertaches.find({}, (err, usertaches) => {
