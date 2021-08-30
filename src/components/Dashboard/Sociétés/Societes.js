@@ -80,7 +80,8 @@ export default function Societes() {
     }
 
     useEffect(()=>{
-        axios.get("http://localhost:4000/societes/")
+      axios.get("https://siv-pointssystem.herokuapp.com:4000/societes/")
+        //axios.get("http://localhost:4000/societes/")
         .then(res=>{
             setSocietes(res.data);
             setIsLoading(false);
