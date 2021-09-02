@@ -39,10 +39,21 @@ export default function ModifierTache(props) {
     users
         .map(user=>{
             return(
-              <option selected>{user.name}</option>
+              
+              <option selected >{user.name}</option>
             )
         })
     ): <h3>Aucun Utilisateur Trouvé !</h3>;
+
+    function GenerateCode(e){
+      e.preventDefault();
+            var uuid = require("uuid");
+      var id = uuid.v4();
+      document.getElementById("NouveauCodeTache").value=id;
+      document.getElementById("Placeholder").value=id;
+      console.log(id)
+          }
+          
   const handleClick = (e) => {
     Swal.fire({
       title: "Vous etez sur?",
@@ -131,18 +142,12 @@ export default function ModifierTache(props) {
                         defaultValue={tache.Nom}
                       />
                     </div>
-                    <div class="form-group col-md-2">
-                      <label>Code Tache </label>
-                      <input
-                        type="text"
-                        class="form-control"
-                        id={"NouveauCodeTache"}
-                        name={"NouveauCodeTache"}
-                        placeholder="NouveauCode Tache"
-                        onChange={ModifierValeur}
-                        defaultValue={tache.Code}
-                      />
-                    </div>
+                    <div class="form-group col-md-3">
+                    <label>Code Tache</label>
+                    <button className="btn btn-primary form-control" onClick={GenerateCode} id={"NouveauCodeTache"} name={"NouveauCodeTache"} onChange={ModifierValeur} ><i className="fa fa-plus-square"></i> GenerateCode </button>
+                     <input type="text" class="form-control" id={"Placeholder"}readOnly="true" defaultValue={tache.Code}/>
+                     </div>
+                    
                     <div class="form-group col-md-2">
                       <label>Nombre de Points </label>
                       <input
@@ -151,7 +156,7 @@ export default function ModifierTache(props) {
                         id={"NouveauPointsTache"}
                         name={"NouveauPointsTache"}
                         placeholder="Nouveau Nombre de points"
-                        onChange={ModifierValeur}
+                     
                         defaultValue={tache.Points}
                       />
                     </div>
