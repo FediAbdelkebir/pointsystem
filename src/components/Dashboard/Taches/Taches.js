@@ -12,7 +12,6 @@ export default function Taches() {
     const [isLoading, setIsLoading] = useState(true);
     const [taches,setTaches]=useState([]);
     const [counttaches,setCountTaches]=useState([]);
-    
     useEffect(()=>{
       
       //axios.get("http://localhost:4000/taches/tache/count")
@@ -325,40 +324,7 @@ function TriePoints(e){
         </div>
         <a href="#" className="btn btn-danger ml-auto" onClick={deleteall}><i className="fa fa-trash"></i> Delete Selected items</a>
       </div>
-      <nav>
-        <ul className="pagination pagination-gutter pagination-primary no-bg">
-          <li className="page-item page-indicator">
-            <a className="page-link" >
-              <i className="la la-angle-left"></i>
-            </a>
-          </li>
-          <li className="page-item ">
-            <a className="page-link" >
-              1
-            </a>
-          </li>
-          <li className="page-item active">
-            <a className="page-link" >
-              2
-            </a>
-          </li>
-          <li className="page-item">
-            <a className="page-link" >
-              3
-            </a>
-          </li>
-          <li className="page-item">
-            <a className="page-link" >
-              4
-            </a>
-          </li>
-          <li className="page-item page-indicator">
-            <a className="page-link" >
-              <i className="la la-angle-right"></i>
-            </a>
-          </li>
-        </ul>
-      </nav>
+
     </div>
   </div>
 
