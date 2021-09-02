@@ -21,6 +21,36 @@ const [societes,setSocietes]=useState([]);
       [e.target.id]: e.target.value,
     });
   };
+  const [users,setUsers]=useState([]);
+  
+  useEffect(()=>{
+    //axios.get("http://localhost:4000/users")
+    axios.get("http://143.110.210.169:4000/users")
+    .then(res=>{
+        setUsers(res.data);
+        setIsLoading(false);
+    })
+    .catch(err=>console.log)
+}, []);
+
+  const SelectList = isLoading ? <option>Chargements des utilisateurs ...</option> : users.length ? (
+    users
+        .map(user=>{
+            return(
+              
+              <option selected >{user.name}</option>
+            )
+        })
+    ): <h3>Aucun Utilisateur Trouvé !</h3>;
+
+    function GenerateCode(e){
+      e.preventDefault();
+            var uuid = require("uuid");
+      var id = uuid.v4();
+      document.getElementById("NouveauCodeSociete").value=id;
+      document.getElementById("PlaceholderSocieteCode").value=id;
+      console.log(id)
+          }
 
   const handleClick = (e) => {
     societe.Nom = document.getElementById("NouveauNomSociete").value;
@@ -102,31 +132,21 @@ const [societes,setSocietes]=useState([]);
                               onChange={handleChange}
                             />
                           </div>
-                          <div className="form-group col-md-2">
-                            <label>Code Societe </label>
-                            <input
-                              type="text"
-                              className="form-control"
-                              type="text"
-                              id={"NouveauCodeSociete"}
-                              name={"NouveauCodeSociete"}
-                              defaultValue={societe.Code}
-                              onChange={handleChange}
-                            />
-                          </div>
-                          <div className="form-group col-md-3">
-                            <label>Super Admin</label>
-                            <input
-                              type="text"
-                              className="form-control"
-                              placeholder="Nouveau SuperAdmin"
-                              type="text"
-                              id={"NouveauSUPAD"}
-                              name={"NouveauSUPAD"}
-                              defaultValue={societe.SUPAD}
-                              onChange={handleChange}
-                            />
-                          </div>
+                          <div class="form-group col-md-3">
+                          <label>Code Societe</label>
+                          <button className="btn btn-primary form-control" onClick={GenerateCode} id={"NouveauCodeSociete"} name={"NouveauCodeSociete"} onChange={handleChange}><i className="fa fa-plus-square"></i> GenerateCode </button>
+                          <input type="text" class="form-control" id={"PlaceholderSocieteCode"}readOnly="true"defaultValue={societe.Code}/>
+                           </div>
+
+
+                         
+                          <div className="form-group col-md-5">
+              <label>Super Admin</label><br></br>
+              <select class="dropdown bootstrap-select show-tick form-control col-md-5 " id={"NouveauSUPAD"}
+                      name={"NouveauSUPAD"}>
+              {SelectList}
+</select>
+            </div> 
                         </div>
                       </form>
                       <button className="btn btn-primary" onClick={handleClick}>
