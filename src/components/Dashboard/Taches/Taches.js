@@ -7,6 +7,7 @@ import {Link} from "react-router-dom";
 import Swal from "sweetalert2";
 import {sortBy} from "underscore";
 import {countBy} from "underscore";
+
 export default function Taches() {
 
     const [isLoading, setIsLoading] = useState(true);
@@ -66,6 +67,7 @@ export default function Taches() {
           tache.Etat = <span class="badge light badge-danger">Terminé</span>;
         }
           return(
+            
                   <tr key={tache._id}>
               <td>
                 <div className="custom-control custom-checkbox checkbox-success check-lg mr-3">
@@ -222,7 +224,7 @@ function TriePoints(e){
 						<div className="widget-stat card">
 							<div className="card-body p-4">
 								<h4 className="card-title">Nouveaux Taches</h4>
-								<h3>245</h3>
+								<h3>{taches.length}</h3>
 								<div className="progress mb-2">
 									<div className="progress-bar progress-animated bg-warning" style={{width: "50%"}}></div>
 								</div>
@@ -313,7 +315,9 @@ function TriePoints(e){
                 </th>
               </tr>
             </thead>
-{content}
+            
+            {content}
+
           </table>
         </div>
       </div>
@@ -324,7 +328,7 @@ function TriePoints(e){
         </div>
         <a href="#" className="btn btn-danger ml-auto" onClick={deleteall}><i className="fa fa-trash"></i> Delete Selected items</a>
       </div>
-
+      
     </div>
   </div>
 

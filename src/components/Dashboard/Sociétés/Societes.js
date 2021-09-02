@@ -186,7 +186,7 @@ function TrieResponsable(e){
 						<div className="widget-stat card">
 							<div className="card-body p-4">
 								<h4 className="card-title">Nouveaux Societes</h4>
-								<h3>245</h3>
+								<h3>{societes.length}</h3>
 								<div className="progress mb-2">
 									<div className="progress-bar progress-animated bg-warning" Style="width: 50%"></div>
 								</div>
@@ -253,40 +253,7 @@ function TrieResponsable(e){
         </div>
         <a href="#" className="btn btn-danger ml-auto" onClick={deleteall}><i className="fa fa-trash"></i> Delete Selected items</a>
       </div>
-      <nav>
-        <ul className="pagination pagination-gutter pagination-primary no-bg">
-          <li className="page-item page-indicator">
-            <a className="page-link" href="javascript:void()">
-              <i className="la la-angle-left"></i>
-            </a>
-          </li>
-          <li className="page-item ">
-            <a className="page-link" href="javascript:void()">
-              
-            </a>
-          </li>
-          <li className="page-item active">
-            <a className="page-link" href="javascript:void()">
-              2
-            </a>
-          </li>
-          <li className="page-item">
-            <a className="page-link" href="javascript:void()">
-              3
-            </a>
-          </li>
-          <li className="page-item">
-            <a className="page-link" href="javascript:void()">
-              4
-            </a>
-          </li>
-          <li className="page-item page-indicator">
-            <a className="page-link" href="javascript:void()">
-              <i className="la la-angle-right"></i>
-            </a>
-          </li>
-        </ul>
-      </nav>
+
     </div>
   </div>
 

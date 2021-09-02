@@ -277,9 +277,9 @@ if (UT.length>0){
         <div className="ticket__content">
           <h4 className="ticket__movie-title">{user.name}</h4>
           <p className="ticket__movie-title">{user.email} <p className="ticket__current-price">{user.name}<br/></p></p>
-          <button className="ticket__buy-btn  my-1 btn-sm btn-success px-4" onClick={(e) =>Valider(user._id)}><a href="javascript:void(0);">Valider <span className="btn-icon-left text-success"><i className="fa fa-check"></i></span></a>&nbsp;</button> 
-           <button className="ticket__buy-btn my-1 btn-sm btn-info px-4" onClick={(e) =>Ajouter(user._id)}><a href="javascript:void(0);"  >Ajouter <span className="btn-icon-left text-info"><i className="fa fa-plus-square"></i></span></a>&nbsp;</button> 
-           <button className="ticket__buy-btn my-1 btn-sm btn-danger px-4" onClick={(e) =>Supprimer(user._id)}><a href="javascript:void(0);" >Supprimer <span className="btn-icon-left text-danger"><i className="fa fa-minus-square"></i></span></a>&nbsp;</button>
+          <button className="ticket__buy-btn  my-1 btn-sm btn-success px-4" onClick={(e) =>Valider(user._id)}><a href="javascript:void(0);" Style="color:white;text-decoration:None;">Valider <span className="btn-icon-left text-success"><i className="fa fa-check"></i></span></a>&nbsp;</button> 
+           <button className="ticket__buy-btn my-1 btn-sm btn-info px-4" onClick={(e) =>Ajouter(user._id)}><a href="javascript:void(0);"   Style="color:white;text-decoration:None;">Ajouter <span className="btn-icon-left text-info"><i className="fa fa-plus-square"></i></span></a>&nbsp;</button> 
+           <button className="ticket__buy-btn my-1 btn-sm btn-danger px-4" onClick={(e) =>Supprimer(user._id)}><a href="javascript:void(0);"  Style="color:white;text-decoration:None;">Supprimer <span className="btn-icon-left text-danger"><i className="fa fa-minus-square"></i></span></a>&nbsp;</button>
         </div>
       </div>
     </div>
