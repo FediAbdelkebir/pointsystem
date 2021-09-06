@@ -84,9 +84,7 @@ export default function Taches() {
                   ></label>
                 </div>
               </td>
-              <td>
-                <strong>{tache._id}</strong>
-              </td>
+              
               <td>
                 <div className="d-flex align-items-center">
                   <img
@@ -292,9 +290,7 @@ function TriePoints(e){
                     <label className="custom-control-label" htmlFor="checkAll"></label>
                   </div>
                 </th>
-                <th>
-                  <strong>ROLL NO.</strong>
-                </th>
+                
                 <th>
                   <strong>Nom</strong>
                 </th>

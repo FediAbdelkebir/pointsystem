@@ -124,9 +124,7 @@ function TrieResponsable(e){
                     ></label>
                   </div>
                 </td>
-                <td>
-                  <strong>{societe._id}</strong>
-                </td>
+                
                 <td>
                   <div className="d-flex align-items-center">
                     <img
@@ -227,9 +225,7 @@ function TrieResponsable(e){
                     <label className="custom-control-label" for="checkAll"></label>
                   </div>
                 </th>
-                <th>
-                  <strong>ROLL NO.</strong>
-                </th>
+                
                 <th>
                   <strong>Nom Sociéte</strong>
                 </th>
