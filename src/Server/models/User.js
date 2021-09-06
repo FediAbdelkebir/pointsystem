@@ -1,65 +1,56 @@
-//const connection = require("./db");
-const {Schema, model} = require('mongoose');
+const mongoose = require('mongoose');
 
-const userSchema = new Schema({
+const userSchema = new mongoose.Schema({
     name: {
         type: String,
         required: true,
-        minlength: 3,
-        maxlength: 33,
-        trim: true
     },
     email: {
         type: String,
         required: true,
-        trim: true
     },
     passwordHash: {
         type: String,
-        min: 1,
-        max: 120
+        required: true,
+    },
+    phone: {
+        type: String,
+        required: true,
+    },
+    isAdmin: {
+        type: Boolean,
+        default: false,
+    },
+    street: {
+        type: String,
+        default: ''
+    },
+    apartment: {
+        type: String,
+        default: ''
+    },
+    zip :{
+        type: String,
+        default: ''
     },
     city: {
         type: String,
-        min: 1,
-        max: 120
-    }
-    ,
-    isAdmin: {
-        type: Boolean,
-        min: 1,
-        max: 120
-    }
-    ,
-    street: {
-        type: String,
-        min: 1,
-        max: 120
-    },
-    apartement: {
-        type: String,
-        min: 1,
-        max: 120
-    }
-    ,
-    zip: {
-        type: Number,
-        min: 1,
-        max: 120
+        default: ''
     },
     country: {
         type: String,
-        min: 1,
-        max: 120
-    },
-    phone: {
-        type: Number,
-        min: 1,
-        max: 120
+        default: ''
     }
-}, {
-    //timestamps is necessary to createdAt and updatedat fields creation
-    timestamps: true
+
 });
 
-module.exports = model('users', userSchema,'users');
+userSchema.virtual('id').get(function () {
+    return this._id.toHexString();
+});
+
+userSchema.set('toJSON', {
+    virtuals: true,
+});
+
+exports.User = mongoose.model('User', userSchema);
+exports.userSchema = userSchema;
