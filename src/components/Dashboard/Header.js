@@ -1,7 +1,7 @@
 import React from 'react';
 import '../vendor/bootstrap-select/dist/css/bootstrap-select.min.css';
 import '../css/style.css';
-
+import "../css/Spinner.css";
 export default function Header() {
   const NbrNotif=0;
     return (

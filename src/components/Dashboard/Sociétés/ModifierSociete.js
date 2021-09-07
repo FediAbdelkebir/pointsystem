@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "../../vendor/bootstrap-select/dist/css/bootstrap-select.min.css";
 import "../../css/style.css";
+
 import SideBar from "../SideBar";
 import Swal from "sweetalert2";
 import { useHistory } from "react-router-dom";
@@ -103,7 +104,35 @@ const [societes,setSocietes]=useState([]);
         .catch(err=>console.log)
     }, []);
 
-    const modifier = isLoading ? <h3>Loading Societes...</h3> : societes.length ? (
+    const modifier = isLoading ?<div class="loader">
+    <div class="dot">L</div>
+    <div class="dot">O</div>
+    <div class="dot">A</div>
+    <div class="dot">D</div>
+    <div class="dot">I</div>
+    <div class="dot">N</div>
+    <div class="dot">G</div>
+    <div class="cogs">
+      <div class="cog cog0">
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+      </div>
+      <div class="cog cog1">
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+      </div>
+      <div class="cog cog2">
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+      </div>
+    </div>
+  </div> : societes.length ? (
         societes.map(societe=>{
             return(
                 <div className="content-body"  key={societe._id}>
