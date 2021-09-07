@@ -131,7 +131,7 @@ export default function ModifierTache(props) {
                 <form>
                   <div class="form-row">
                     <div class="form-group col-md-3">
-                      <label>Nom Tache</label>
+                      <label>Nom Tache :</label>
                       <input
                         type="text"
                         class="form-control"
@@ -143,13 +143,13 @@ export default function ModifierTache(props) {
                       />
                     </div>
                     <div class="form-group col-md-3">
-                    <label>Code Tache</label>
-                    <button className="btn btn-primary form-control" onClick={GenerateCode} id={"NouveauCodeTache"} name={"NouveauCodeTache"} onChange={ModifierValeur} ><i className="fa fa-plus-square"></i> GenerateCode </button>
-                     <input type="text" class="form-control" id={"Placeholder"}readOnly="true" defaultValue={tache.Code}/>
+                    <label>Génerer Automatiquement Code Tache :</label>
+                    <button className="btn btn-primary form-control" onClick={GenerateCode} id={"NouveauCodeTache"} name={"NouveauCodeTache"} onChange={ModifierValeur} ><i className="fa fa-plus-square"></i> Génerer Code</button><br/>Génerer Manuellement :
+                     <input type="text" class="form-control" id={"Placeholder"} defaultValue={tache.Code}/>
                      </div>
                     
                     <div class="form-group col-md-2">
-                      <label>Nombre de Points </label>
+                      <label>Nombre de Points :</label>
                       <input
                         type="text"
                         class="form-control"
@@ -161,7 +161,7 @@ export default function ModifierTache(props) {
                       />
                     </div>
                       <div className="form-group col-md-5">
-              <label>Responsable </label><br></br>
+              <label>Responsable :</label><br></br>
               <select class="dropdown bootstrap-select show-tick form-control col-md-5 " id={"ResponsableTache"}
                       name={"ResponsableTache"}>
               {SelectList}
@@ -170,7 +170,7 @@ export default function ModifierTache(props) {
                    
 
                     <div class="form-group col-md-9">
-                      <label>Description detaillé de la tache </label>
+                      <label>Description detaillé de la tache :</label>
                       <textarea
                         class="form-control"
                         rows="5"
@@ -183,16 +183,9 @@ export default function ModifierTache(props) {
                       ></textarea>
                     </div>
                   </div>
-
-                  <div class="form-group">
-                    <div class="form-check">
-                      <input class="form-check-input" type="checkbox" />
-                      <label class="form-check-label">Send Mail</label>
-                    </div>
-                  </div>
                 </form>
                 <button className="btn btn-primary" onClick={handleClick}>
-                  Modifier Tache
+                  <i className="fa fa-gears"></i> Modifier Tache
                 </button>
               </div>
             </div>

@@ -136,7 +136,7 @@ function TrieResponsable(e){
                     <span className="w-space-no">{societe.Nom}</span>
                   </div>
                 </td>
-                <td>{societe.Code}</td>
+                
                 <td>{societe.SUPAD}</td>
                 <td>
                   <div className="d-flex">
@@ -229,9 +229,7 @@ function TrieResponsable(e){
                 <th>
                   <strong>Nom Sociéte</strong>
                 </th>
-                <th>
-                  <strong>Code</strong>
-                </th>
+                
                 <th>
                   <strong>Responsable</strong>
                 </th>

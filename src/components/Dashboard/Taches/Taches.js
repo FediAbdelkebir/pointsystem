@@ -96,7 +96,7 @@ export default function Taches() {
                   <span className="w-space-no">{tache.Nom}</span>
                 </div>
               </td>
-              <td>{tache.Code}</td>
+              
               <td>{tache.Description}</td>
               <td>{tache.Points}</td>
               <td>{tache.Responsable}</td>
@@ -294,9 +294,7 @@ function TriePoints(e){
                 <th>
                   <strong>Nom</strong>
                 </th>
-                <th>
-                  <strong>Code</strong>
-                </th>
+                
                 <th>
                   <strong>Description</strong>
                 </th>

@@ -134,7 +134,7 @@ function GenerateCode(e){
                   <div class="form-group col-md-3">
                                             <label>Code Societe</label>
                                             <button className="btn btn-primary form-control" onClick={GenerateCode} id={"CodeSociete"} name={"CodeSociete"} ><i className="fa fa-plus-square"></i> GenerateCode </button>
-                                            <input type="text" class="form-control" id={"PlaceholderSocieteCode"}readOnly="true"/>
+                                            <input type="text" class="form-control" id={"PlaceholderSocieteCode"}/>
                                             </div>
                   
                   

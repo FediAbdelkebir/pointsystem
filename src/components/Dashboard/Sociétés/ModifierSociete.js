@@ -120,7 +120,7 @@ const [societes,setSocietes]=useState([]);
                       <form>
                         <div className="form-row">
                           <div className="form-group col-md-3">
-                            <label>Nom Societe</label>
+                            <label>Nom Societe :</label>
                             <input
                               type="text"
                               className="form-control"
@@ -133,15 +133,15 @@ const [societes,setSocietes]=useState([]);
                             />
                           </div>
                           <div class="form-group col-md-3">
-                          <label>Code Societe</label>
-                          <button className="btn btn-primary form-control" onClick={GenerateCode} id={"NouveauCodeSociete"} name={"NouveauCodeSociete"} onChange={handleChange}><i className="fa fa-plus-square"></i> GenerateCode </button>
-                          <input type="text" class="form-control" id={"PlaceholderSocieteCode"}readOnly="true"defaultValue={societe.Code}/>
+                          <label>Génerer Automatiquement Code Tache :</label>
+                          <button className="btn btn-primary form-control" onClick={GenerateCode} id={"NouveauCodeSociete"} name={"NouveauCodeSociete"} onChange={handleChange}><i className="fa fa-plus-square"></i> Génerer Code </button><br/>Génerer Manuellement :
+                          <input type="text" class="form-control" id={"PlaceholderSocieteCode"}defaultValue={societe.Code}/>
                            </div>
 
 
                          
                           <div className="form-group col-md-5">
-              <label>Super Admin</label><br></br>
+              <label>Super Admin :</label><br></br>
               <select class="dropdown bootstrap-select show-tick form-control col-md-5 " id={"NouveauSUPAD"}
                       name={"NouveauSUPAD"}>
               {SelectList}
